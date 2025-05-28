@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import './Login.css';
+
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -33,27 +35,28 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
-      {token && <p> Logged in! Token saved.</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {token && <p> Logged in!</p>}
+      {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Username"
           value={username}
           onChange={e => setUsername(e.target.value)}
-        /><br />
+        />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={e => setPassword(e.target.value)}
-        /><br />
+        />
         <button type="submit">Login</button>
       </form>
     </div>
   );
+  
 }
 
 export default Login;
