@@ -1,0 +1,18 @@
+### Register a new user
+POST http://localhost:8000/api/register/
+Content-Type: application/json
+
+{
+  "username": "josh1234",
+  "email": "josh1234@example.com",
+  "password": "josh1231"
+}
+
+### Login with the registered user
+POST http://localhost:8000/api/token/
+Content-Type: application/json
+
+{
+  "username": "josh1234",
+  "password": "josh1231"
+}
