@@ -3,8 +3,8 @@ POST http://localhost:8000/api/register/
 Content-Type: application/json
 
 {
-  "username": "josh1234",
-  "email": "josh1234@example.com",
+  "username": "test",
+  "email": "test@example.com",
   "password": "josh1231"
 }
 
@@ -13,6 +13,6 @@ POST http://localhost:8000/api/token/
 Content-Type: application/json
 
 {
-  "username": "josh1234",
+  "username": "test",
   "password": "josh1231"
 }

@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import './Register.css';
 
 function Register() {
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -29,6 +32,7 @@ function Register() {
             localStorage.setItem('access_token', data.access); // store for later use
             localStorage.setItem('refresh_token', data.refresh);
             setError('');
+            navigate('/dashboard'); // redirect to dashboard or another page
         }       
         catch (err) {
             setError('Registration failed');
