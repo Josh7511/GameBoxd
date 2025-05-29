@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 
 function Login() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -29,6 +31,7 @@ function Login() {
       localStorage.setItem('access_token', data.access); // store for later use
       localStorage.setItem('refresh_token', data.refresh);
       setError('');
+      navigate('/dashboard'); 
     } catch (err) {
       setError('Invalid username or password');
     }
