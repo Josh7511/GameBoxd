@@ -38,9 +38,15 @@ function Register() {
     return (
         <div className="register-container">
           <h2>Register</h2>
-          {token && <p> Logged in!</p>}
+          {token && <p> Registered!</p>}
           {error && <p>{error}</p>}
           <form onSubmit={handleSubmit}>
+          <input
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
             <input
               type="text"
               placeholder="Username"
@@ -53,11 +59,11 @@ function Register() {
               value={password}
               onChange={e => setPassword(e.target.value)}
             />
-            <button type="submit">Login</button>
+            <button type="submit">Sign Up</button>
           </form>
         </div>
       );
       
     }
     
-    export default Login;
+    export default Register;
