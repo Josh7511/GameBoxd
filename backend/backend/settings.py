@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken', 
     'users',  # Custom user app
     'corsheaders',
+    'games',
 ]
 
 CORS_ALLOWED_ORIGINS = [

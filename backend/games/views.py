@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Game
 from games.serializers import GameSerializer, GameLogSerializer
+from .models import GameLog
 
 @api_view(['GET', 'POST'])
 
@@ -13,3 +14,17 @@ def game_list(request):
         serializer = GameSerializer(games, many=True)
         return Response(serializer.data)
         
+
+def game_log(request):
+     if request.method == "POST":
+        serializer = GameLogSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+     
+     elif request.method == "GET":
+        logs = GameLog.objects.filter(user=request.user)
+        serializer = GameLogSerializer(logs, many=True)
+        return Response(serializer.data)
+    
