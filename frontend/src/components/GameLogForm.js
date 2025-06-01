@@ -1,4 +1,6 @@
 import {useState, useEffect} from 'react';
+import './GameLogForm.css';
+
 
 function GameLogForm(){
 
@@ -57,44 +59,56 @@ function GameLogForm(){
   return (
     <div className="game-log-form">
       <h2>Log a Game</h2>
-      {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
-        <select name="game" value={form.game} onChange={handleChange} required>
-          <option value="">Select a game</option>
-          {games.map(game => (
-            <option key={game.id} value={game.id}>{game.title}</option>
-          ))}
-        </select>
-
-        <select name="status" value={form.status} onChange={handleChange} required>
-          <option value="">Select status</option>
-          <option value="completed">Completed</option>
-          <option value="inprogress">In Progress</option>
-          <option value="playlist">Playlist</option>
-        </select>
-
-        <input
-          type="number"
-          name="rating"
-          placeholder="Rating (1–5)"
-          value={form.rating}
-          onChange={handleChange}
-          min="1"
-          max="5"
-          required
-        />
-
-        <textarea
-          name="review"
-          placeholder="Write a review"
-          value={form.review}
-          onChange={handleChange}
-        />
-
+        <label>
+          Game:
+          <select name="game" value={form.game} onChange={handleChange}>
+            <option value="">Select a game</option>
+            {games.map((game) => (
+              <option key={game.id} value={game.id}>
+                {game.title}
+              </option>
+            ))}
+          </select>
+        </label>
+  
+        <label>
+          Status:
+          <select name="status" value={form.status} onChange={handleChange}>
+            <option value="">Select status</option>
+            <option value="playlist">Playlist</option>
+            <option value="inprogress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </label>
+  
+        <label>
+          Rating (1–5):
+          <input
+            type="number"
+            name="rating"
+            min="1"
+            max="5"
+            value={form.rating}
+            onChange={handleChange}
+          />
+        </label>
+  
+        <label>
+          Review:
+          <textarea
+            name="review"
+            value={form.review}
+            onChange={handleChange}
+          />
+        </label>
+  
         <button type="submit">Submit</button>
+        {message && <p>{message}</p>}
       </form>
     </div>
   );
+  
 }
 
 export default GameLogForm;
