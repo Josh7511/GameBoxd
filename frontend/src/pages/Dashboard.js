@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import GameLogForm from '../components/GameLogForm';
+
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ function Dashboard() {
   return (
     <div className="login-container">
       <h2>Dashboard</h2>
-      <p>You are logged in!</p>
+      <GameLogForm />
       <button onClick={handleLogout}>Logout</button>
     </div>
   );

@@ -10,8 +10,11 @@ function GameLogForm(){
     review: '',
   });
 
+  const [message, setMessage] = useState('');
+
+
   useEffect(() => {
-    fetch('/api/games')
+    fetch('http://localhost:8000/api/games/')
       .then(response => response.json())
       .then(data => setGames(data))
       .catch(error => console.error('Error fetching games:', error));
@@ -26,21 +29,26 @@ function GameLogForm(){
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8000/api/games-log/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-        },
-        body: JSON.stringify(form)
-      });
+        const token = localStorage.getItem('access_token');
+      
+        const response = await fetch('http://localhost:8000/api/games-log/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(form)
+        });
 
       if (response.ok) {
         setMessage("Game log submitted!");
         setForm({ game: '', status: '', rating: '', review: '' });
       } else {
-        setMessage("Failed to submit.");
+        const errorData = await response.json();
+        console.error("Submission error:", errorData);
+        setMessage(`Failed to submit: ${errorData.detail || 'Unknown error'}`);
       }
+      
     } catch (err) {
       console.error(err);
       setMessage("Error submitting.");
