@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 
@@ -15,7 +16,7 @@ class GameLog(models.Model):
         ('inprogress', 'In Progress'),
     ]
 
-    user = models.ForeignKey('users.User', on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     status = models.CharField(max_length=20, choices = STATUS_CHOICES)  # playlist, completed, inprogress
     rating = models.IntegerField(null=True, blank=True)  # 1-5 rating

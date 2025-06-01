@@ -9,5 +9,5 @@ class GameSerializer(serializers.ModelSerializer):
 class GameLogSerializer(serializers.ModelSerializer):
     class Meta:
         model = GameLog
-        fields = ['id', 'user', 'game', 'status', 'rating', 'date_played', 'review']
+        fields = ['user', 'game', 'status', 'rating', 'date_played', 'review']
         read_only_fields = ['user', 'date_played']  # user and date_played are set automatically
