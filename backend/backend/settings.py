@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'games',
 ]
 
+IGDB_CLIENT_ID = 'n8lbz1aidaqtb31xtuf0pqrrt0my0q'
+IGDB_CLIENT_SECRET = 'ga2man1dk6xel6qiepcanpd10eoj0t'
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
