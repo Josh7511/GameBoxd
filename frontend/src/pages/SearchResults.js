@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 
 function SearchResults() {
   const [searchParams] = useSearchParams();
@@ -27,7 +27,9 @@ function SearchResults() {
       <h2>Search Results for "{query}"</h2>
       <ul>
         {results.map((game) => (
-          <li key={game.id}>{game.name}</li> 
+          <li key={game.id}>
+            <Link to={`/gamepage/${game.id}`}>{game.name}</Link>
+          </li>
         ))}
         <button onClick={goBack}>Go Back</button>
       </ul>

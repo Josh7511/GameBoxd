@@ -7,3 +7,5 @@ function GameDetails(){
         <div> GameDetails page</div>
     )
 }
+
+export default GameDetails;
