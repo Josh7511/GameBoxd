@@ -8,7 +8,7 @@ function SearchGames() {
   const handleSearch = (e) => {
     e.preventDefault();
     if (query.trim()) {
-      navigate(`/search?query=${encodeURIComponent(query)}`);
+      navigate(`/search?query=${query}`);
     }
   };
 
