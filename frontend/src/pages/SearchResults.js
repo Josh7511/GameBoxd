@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 function SearchResults() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('query');
   const [results, setResults] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!query) return;
@@ -16,6 +17,11 @@ function SearchResults() {
 
   }, [query]);
 
+  const goBack = () => {
+    navigate('/dashboard');
+  };
+
+
   return (
     <div>
       <h2>Search Results for "{query}"</h2>
@@ -23,6 +29,7 @@ function SearchResults() {
         {results.map((game) => (
           <li key={game.id}>{game.name}</li> 
         ))}
+        <button onClick={goBack}>Go Back</button>
       </ul>
     </div>
   );
