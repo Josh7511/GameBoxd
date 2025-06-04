@@ -16,7 +16,6 @@ function Dashboard() {
     <div className="login-container">
       <h2>Dashboard</h2>
       <SearchGames />
-      <GameLogForm />
       <button onClick={handleLogout}>Logout</button>
     </div>
   );
