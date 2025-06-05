@@ -63,3 +63,27 @@ def search_igdb(request):
         return Response({'error': 'Failed to fetch from IGDB'}, status=response.status_code)
 
     return Response(response.json())
+
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_cover_by_game_id(request):
+    game_id = request.GET.get('id')
+    if not game_id:
+        return Response({'error': 'No game ID provided'}, status=400)
+
+    token = get_igdb_token()
+    headers = {
+        'Client-ID': settings.IGDB_CLIENT_ID,
+        'Authorization': f'Bearer {token}',
+    }
+
+    body = f'fields name, cover.url; where id = {game_id};'
+
+    response = requests.post('https://api.igdb.com/v4/games', headers=headers, data=body)
+
+    if response.status_code != 200:
+        return Response({'error': 'Failed to fetch game info'}, status=response.status_code)
+
+    return Response(response.json())
