@@ -6,7 +6,6 @@ function GameLogForm(){
 
   const [games, setGames] = useState([]);
   const [form, setForm] = useState({
-    game: '',
     status: '',
     rating: '',
     review: '',
@@ -60,18 +59,6 @@ function GameLogForm(){
     <div className="game-log-form">
       <h2>Log a Game</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Game:
-          <select name="game" value={form.game} onChange={handleChange}>
-            <option value="">Select a game</option>
-            {games.map((game) => (
-              <option key={game.id} value={game.id}>
-                {game.title}
-              </option>
-            ))}
-          </select>
-        </label>
-  
         <label>
           Status:
           <select name="status" value={form.status} onChange={handleChange}>

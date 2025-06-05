@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import GameLogForm from '../components/GameLogForm';
 import SearchGames from '../components/SearchGames';
 
 
