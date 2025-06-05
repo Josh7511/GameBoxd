@@ -17,7 +17,7 @@ class GameLog(models.Model):
     ]
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    game = models.IntegerField()
+    game_id = models.IntegerField()
     status = models.CharField(max_length=20, choices = STATUS_CHOICES)  # playlist, completed, inprogress
     rating = models.IntegerField(null=True, blank=True)  # 1-5 rating
     date_played = models.DateTimeField(auto_now_add=True)

@@ -1,25 +1,20 @@
-import {useState, useEffect} from 'react';
+import {useState } from 'react';
+import { useParams } from 'react-router-dom';
+
 import './GameLogForm.css';
 
 
 function GameLogForm(){
 
-  const [games, setGames] = useState([]);
+  const { id } = useParams();
   const [form, setForm] = useState({
+    game_id: id,
     status: '',
     rating: '',
     review: '',
   });
 
   const [message, setMessage] = useState('');
-
-
-  useEffect(() => {
-    fetch('http://localhost:8000/api/games/')
-      .then(response => response.json())
-      .then(data => setGames(data))
-      .catch(error => console.error('Error fetching games:', error));
-  }, []);
 
 
   const handleChange = (e) => {
@@ -43,7 +38,7 @@ function GameLogForm(){
 
       if (response.ok) {
         setMessage("Game log submitted!");
-        setForm({ game: '', status: '', rating: '', review: '' });
+        setForm({ status: '', rating: '', review: '' });
       } else {
         const errorData = await response.json();
         console.error("Submission error:", errorData);
