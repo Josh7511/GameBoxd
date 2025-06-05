@@ -1,8 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import GameLogForm from '../components/GameLogForm';
 
 function GameDetails(){
     const navigate = useNavigate();
+    const { id } = useParams();
+
 
     const navDashboard = () => {
         navigate('/dashboard');
@@ -12,7 +14,7 @@ function GameDetails(){
 
     return (
         <div className="game-details-container">
-            <h2>Game Details</h2>
+            <h2>Game Details {id}</h2>
             <p>Here you can display detailed information about the game.</p>
             <GameLogForm />
             <button onClick={navDashboard}>Back to Dashboard</button>
