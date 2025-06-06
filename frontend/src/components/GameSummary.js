@@ -1,5 +1,6 @@
 import {useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import './GameSummary.css';
 
 function GameSummary() {
     const { id } = useParams();
@@ -19,7 +20,6 @@ function GameSummary() {
             ) : (
                 results.map((game) => (
                     <div key={game.id}>
-                        <h2>{game.name}</h2>
                         <p>{game.summary}</p>
                     </div>
                 ))
