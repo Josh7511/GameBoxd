@@ -8,7 +8,7 @@ function GameCover() {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/cover/?id=${id}`)
+    fetch(`http://localhost:8000/api/search-by-id/?id=${id}`)
       .then((response) => response.json())
       .then((data) => setResults(data))
       .catch((error) => console.error('Fetch Error', error));

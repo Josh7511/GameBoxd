@@ -5,5 +5,5 @@ urlpatterns = [
     path('games/', game_list, name='game-list'),
     path('games-log/',game_log, name='game-log'),
     path('search-igdb/', search_igdb, name='search-igdb'),
-    path('cover/', search_igdb_by_id, name='get-cover-by-game-id'),
+    path('search-by-id/', search_igdb_by_id, name='search_igdb_by_id'),
 ]
