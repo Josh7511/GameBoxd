@@ -55,7 +55,7 @@ def search_igdb(request):
         'Authorization': f'Bearer {token}',
     }
 
-    body = f'search "{query}"; fields id,name,cover.url; limit 10;'
+    body = f'search "{query}"; fields id, summary, name,cover.url; limit 10;'
 
     response = requests.post('https://api.igdb.com/v4/games', data=body, headers=headers)
 
@@ -68,7 +68,7 @@ def search_igdb(request):
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def get_cover_by_game_id(request):
+def search_igdb_by_id(request):
     game_id = request.GET.get('id')
     if not game_id:
         return Response({'error': 'No game ID provided'}, status=400)
@@ -79,7 +79,7 @@ def get_cover_by_game_id(request):
         'Authorization': f'Bearer {token}',
     }
 
-    body = f'fields name, cover.url; where id = {game_id};'
+    body = f'fields name, summary, cover.url; where id = {game_id};'
 
     response = requests.post('https://api.igdb.com/v4/games', headers=headers, data=body)
 
