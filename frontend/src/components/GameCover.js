@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import placeholder from '../assets/images/placeholder.png';
+import './GameCover.css';
 
 function GameCover() {
   const { id } = useParams();
@@ -14,16 +16,23 @@ function GameCover() {
 
   return (
     <div className="game-cover">
-      {results.map((game) => (
-        <div key={game.id}>
-          {game.cover?.url ? (
-            <img src={`https:${game.cover.url.replace('t_thumb', 't_cover_big')}`}
-            alt={game.name} />
-          ) : (
-            <p>No cover found</p>
-          )}
-        </div>
-      ))}
+      {results.length === 0 ? (
+        <img src={placeholder} alt="Placeholder" className="game-cover-image" />
+      ) : (
+        results.map((game) => (
+          <div key={game.id}>
+            <img
+              src={
+                game.cover?.url
+                  ? `https:${game.cover.url.replace('t_thumb', 't_cover_big')}`
+                  : placeholder
+              }
+              alt={game.name || 'Game Cover'}
+              className="game-cover-image"
+            />
+          </div>
+        ))
+      )}
     </div>
   );
 }
