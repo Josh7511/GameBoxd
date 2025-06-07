@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import GameLogForm from '../components/GameLogForm';
 import GameCover from '../components/GameCover';
 import GameSummary from '../components/GameSummary';
+import GameReviews from '../components/GameReviews';
 import './GameDetails.css';
 
 function GameDetails(){
@@ -23,6 +24,7 @@ function GameDetails(){
             <GameSummary />
             </div>
             <GameLogForm />
+            <GameReviews />
             <button onClick={navDashboard}>Back to Dashboard</button>
             </div>
     )

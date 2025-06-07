@@ -17,20 +17,28 @@ def game_list(request):
         serializer = GameSerializer(games, many=True)
         return Response(serializer.data)
         
-@api_view(['GET', 'POST'])
+@api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def game_log(request):
-     if request.method == "POST":
+    if request.method == "POST":
         serializer = GameLogSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=request.user)
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
-     
-     elif request.method == "GET":
-        logs = GameLog.objects.filter(user=request.user)
-        serializer = GameLogSerializer(logs, many=True)
-        return Response(serializer.data)
+    
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def game_log_by_id(request):
+    game_id = request.GET.get('query', '')
+    if not game_id:
+        return Response({'error': 'Game ID is required'}, status=400)
+    
+    logs = GameLog.objects.filter(game_id=game_id)
+    serializer = GameLogSerializer(logs, many=True)
+    return Response(serializer.data)
+
      
 def get_igdb_token():
     response = requests.post('https://id.twitch.tv/oauth2/token', params={
@@ -87,3 +95,5 @@ def search_igdb_by_id(request):
         return Response({'error': 'Failed to fetch game info'}, status=response.status_code)
 
     return Response(response.json())
+
+
