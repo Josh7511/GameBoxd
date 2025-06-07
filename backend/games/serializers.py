@@ -7,6 +7,7 @@ class GameSerializer(serializers.ModelSerializer):
         fields = ['id', 'igdb_id', 'title']
 
 class GameLogSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField(read_only=True)
     class Meta:
         model = GameLog
         fields = ['user', 'game_id', 'status', 'rating', 'date_played', 'review']

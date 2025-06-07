@@ -20,6 +20,7 @@ return(
   ) : (
       results.map((log) => (
           <div key={log.user}>
+              <h3>{log.user}</h3>
               <p>{log.rating}</p>
               <p>{log.review}</p>
           </div>
