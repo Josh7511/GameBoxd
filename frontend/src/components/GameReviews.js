@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import './GameReviews.css';
 
 function GameReviews() {
   const { id } = useParams();
@@ -14,19 +15,17 @@ function GameReviews() {
 
 
 return(
-  <div className="game-reviews">
-  {results.length === 0 ? (
-      <p>No summary available for this game.</p>
-  ) : (
-      results.map((log) => (
-          <div key={log.user}>
-              <h3>{log.user}</h3>
-              <p>{log.rating}</p>
-              <p>{log.review}</p>
-          </div>
-      ))
-  )}
+<div className="reviews-container">
+  {results.map((log) => (
+    <div className="review-box" key={log.id}>
+      <h2>Reviewed by: {log.user} </h2>
+        <h3>Rating: {log.rating}/5</h3>
+      <p>{log.review}</p>
+      <p><small>{new Date(log.date_played).toLocaleDateString()}</small></p>
+    </div>
+  ))}
 </div>
+
 );
 }
 
