@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import './SearchResults.css'; 
+import NavBar from '../components/NavBar'; 
 
 function SearchResults() {
   const [searchParams] = useSearchParams();
@@ -24,6 +25,8 @@ function SearchResults() {
 
 
   return (
+    <>
+    <NavBar />
     <div className="search-results-container">
       <h2>Search Results for "{query}"</h2>
       <ul>
@@ -35,6 +38,7 @@ function SearchResults() {
       </ul>
       <button onClick={goBack}>Go Back</button>
     </div>
+    </>
   );
   
 }

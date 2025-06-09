@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import SearchGames from '../components/SearchGames';
+import NavBar from '../components/NavBar';
 
 
 function Dashboard() {
@@ -12,11 +13,15 @@ function Dashboard() {
   };
 
   return (
+    <>
+    <NavBar /> 
+  
     <div className="login-container">
       <h2>Dashboard</h2>
       <SearchGames />
       <button onClick={handleLogout}>Logout</button>
     </div>
+  </>
   );
 }
 
