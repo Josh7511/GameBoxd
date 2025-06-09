@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import './SearchResults.css'; 
+import placeholder from '../assets/images/placeholder.png';
 import NavBar from '../components/NavBar'; 
 
 function SearchResults() {
@@ -29,13 +30,29 @@ function SearchResults() {
     <NavBar />
     <div className="search-results-container">
       <h2>Search Results for "{query}"</h2>
-      <ul>
-        {results.map((game) => (
-          <li key={game.id}>
-            <Link to={`/gamepage/${game.id}`}>{game.name}</Link>
-          </li>
-        ))}
-      </ul>
+      <ul className="results-list">
+  {results.map((game) => (
+    <li key={game.id} className="result-item">
+      <img
+        src={
+          game.cover?.url
+            ? `https:${game.cover.url.replace('t_thumb', 't_cover_small')}`
+            : placeholder
+        }
+        alt={game.name || 'Game Cover'}
+        className="game-cover-thumb"
+      />
+      <div className="game-details">
+        <Link to={`/gamepage/${game.id}`} className="game-title">
+          {game.name}
+        </Link>
+        <p className="game-description">
+          {game.summary || 'No description available.'}
+          </p>
+      </div>
+    </li>
+  ))}
+</ul>
       <button onClick={goBack}>Go Back</button>
     </div>
     </>
