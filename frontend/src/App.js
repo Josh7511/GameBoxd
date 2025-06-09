@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import SearchResults from './pages/SearchResults';
 import GameDetails from './pages/GameDetails';
+import AboutMe from './pages/AboutMe';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/search" element={<SearchResults />} />
         <Route path="/gamepage/:id" element={<GameDetails />}/>
+        <Route path="/about" element={<AboutMe />} />
         <Route
           path="/dashboard"
           element={

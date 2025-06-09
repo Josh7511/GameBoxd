@@ -30,7 +30,7 @@ function NavBar() {
         </form>
       </div>
       <div className="nav-right">
-        <p>about us, profile</p>
+      <Link to="/about" className="nav-link">About Us</Link>
       </div>
     </nav>
   );

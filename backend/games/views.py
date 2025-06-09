@@ -74,6 +74,7 @@ def search_igdb(request):
 
 
 
+
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def search_igdb_by_id(request):

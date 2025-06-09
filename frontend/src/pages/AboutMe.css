@@ -1,0 +1,46 @@
+.about-container {
+    background-color: var(--background);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 3rem;
+    min-height: 100vh;
+  }
+  
+  .about-card {
+    background-color: var(--card);
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .about-card h1 {
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  
+  .about-card h2 {
+    margin-top: 2rem;
+  }
+  
+  .about-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .about-card li {
+    margin: 0.5rem 0;
+  }
+  
+  .about-card a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  
+  .about-card a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+  }
+  
