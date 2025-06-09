@@ -53,7 +53,6 @@ function SearchResults() {
     </li>
   ))}
 </ul>
-      <button onClick={goBack}>Go Back</button>
     </div>
     </>
   );
