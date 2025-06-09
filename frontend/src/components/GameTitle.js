@@ -1,9 +1,8 @@
 import {useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import './GameSummary.css';
 
 
-function GameSummary() {
+function GameTitle() {
     const { id } = useParams();
     const [results, setResults] = useState([]);
 
@@ -15,13 +14,13 @@ function GameSummary() {
     }, [id]);
 
     return (
-        <div className="game-summary">
+        <div className="game-title">
             {results.length === 0 ? (
-                <p>No summary available for this game.</p>
+                <p>Title Not Loading.</p>
             ) : (
                 results.map((game) => (
                     <div key={game.id}>
-                        <p>{game.summary}</p>
+                        <p>{game.name}</p>
                     </div>
                 ))
             )}
@@ -32,4 +31,4 @@ function GameSummary() {
 
 }
 
-export default GameSummary;
+export default GameTitle;

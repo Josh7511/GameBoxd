@@ -1,0 +1,17 @@
+.game-details-container {
+    padding: 2rem;
+    color: var(--text);
+  }
+  
+  .game-main-row {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  
+  .game-summary {
+    max-width: 400px;
+    word-wrap: break-word;
+  }
+  
+  
