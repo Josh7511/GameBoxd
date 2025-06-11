@@ -44,3 +44,20 @@
     text-decoration: underline;
   }
   
+  .contact-icons {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+  }
+  
+  .contact-icons img {
+    width: 60px;
+    height: auto;
+    transition: transform 0.2s;
+  }
+  
+  .contact-icons img:hover {
+    transform: scale(1.1);
+  }
