@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './NavBar.css';
+import controller from '../assets/images/controller.png';
 
 function NavBar() {
   const [query, setQuery] = useState('');
@@ -15,9 +16,13 @@ function NavBar() {
 
   return (
     <nav className="navbar">
-      <div className="nav-left">
-        <Link to="/dashboard" className="logo">GameBoxd</Link>
-      </div>
+   
+        <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0rem' }}>
+                <img src={controller} alt="Controller Icon" style={{ width: '60px', height: 'auto' }} />
+                <h2 style={{ margin: 0, color: 'var(--accent)' }}>GameBoxd</h2>
+            </div>
+        </Link>
       <div className="nav-center">
         <form onSubmit={handleSearch} className="search-form">
           <input
