@@ -14,7 +14,11 @@ function PopularGames() {
   }, []);
 
   return (
-    <div className="popular-games-container">
+<div className="popular-wrapper">
+  <div className="popular-row">
+    <h2 className="popular-title">Most Played Games in the Last 24 Hours</h2>
+  </div>
+  <div className="popular-row popular-games-container">
     {games.map((game) => (
       <Link
         key={game.id}
@@ -33,7 +37,9 @@ function PopularGames() {
       </Link>
     ))}
   </div>
-);
+</div>
+
+  );
 }
 
 export default PopularGames;
