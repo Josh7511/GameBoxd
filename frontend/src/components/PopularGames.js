@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import placeholder from '../assets/images/placeholder.png';
+import './PopularGames.css';
 
 function PopularGames() {
   const [games, setGames] = useState([]);
@@ -14,24 +15,25 @@ function PopularGames() {
 
   return (
     <div className="popular-games-container">
-      <h2>Popular Games</h2>
-      <ul className="popular-games-list">
-        {games.map((game) => (
-          <li key={game.id} className="popular-game-card">
-            <img
-              src={
-                game.cover?.url
-                  ? `https:${game.cover.url.replace('t_thumb', 't_cover_big')}`
-                  : placeholder
-              }
-              alt={game.name}
-            />
-            <Link to={`/gamepage/${game.id}`}>{game.name}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    {games.map((game) => (
+      <Link
+        key={game.id}
+        to={`/gamepage/${game.id}`}
+        className="game-card"
+      >
+        <img
+          src={
+            game.cover?.url
+              ? `https:${game.cover.url.replace('t_thumb', 't_cover_big')}`
+              : placeholder
+          }
+          alt={game.name}
+          className="game-cover"
+        />
+      </Link>
+    ))}
+  </div>
+);
 }
 
 export default PopularGames;

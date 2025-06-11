@@ -110,7 +110,7 @@ def popular_games(request):
     pop_body = '''
         fields game_id, value, popularity_type;
         sort value desc;
-        where popularity_type = 1;
+        where popularity_type = 5;
         limit 6;
     '''
     pop_response = requests.post('https://api.igdb.com/v4/popularity_primitives', data=pop_body, headers=headers)
