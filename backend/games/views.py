@@ -97,7 +97,7 @@ def search_igdb_by_id(request):
 
     return Response(response.json())
 
-
+#trending games
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def popular_games(request):
@@ -111,6 +111,45 @@ def popular_games(request):
         fields game_id, value, popularity_type;
         sort value desc;
         where popularity_type = 5;
+        limit 6;
+    '''
+    pop_response = requests.post('https://api.igdb.com/v4/popularity_primitives', data=pop_body, headers=headers)
+
+    if pop_response.status_code != 200:
+        return Response({'error': 'Failed to fetch popularity data'}, status=pop_response.status_code)
+
+    pop_data = pop_response.json()
+    game_ids = [str(entry['game_id']) for entry in pop_data if 'game_id' in entry]
+
+    if not game_ids:
+        return Response([])
+
+    games_body = f'''
+        fields id, name, cover.url;
+        where id = ({','.join(game_ids)});
+    '''
+    games_response = requests.post('https://api.igdb.com/v4/games', data=games_body, headers=headers)
+
+    if games_response.status_code != 200:
+        return Response({'error': 'Failed to fetch game details'}, status=games_response.status_code)
+
+    return Response(games_response.json())
+
+
+#most popular games total
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def popular_games_total(request):
+    token = get_igdb_token()
+    headers = {
+        'Client-ID': settings.IGDB_CLIENT_ID,
+        'Authorization': f'Bearer {token}',
+    }
+
+    pop_body = '''
+        fields game_id, value, popularity_type;
+        sort value desc;
+        where popularity_type = 1;
         limit 6;
     '''
     pop_response = requests.post('https://api.igdb.com/v4/popularity_primitives', data=pop_body, headers=headers)

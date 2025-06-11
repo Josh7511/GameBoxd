@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import SearchGames from '../components/SearchGames';
 import NavBar from '../components/NavBar';
 import PopularGames from '../components/PopularGames';
+import PopularGamesTotal from '../components/PopularGamesTotal';
 
 
 function Dashboard() {
@@ -17,7 +18,7 @@ function Dashboard() {
     <>
     <NavBar /> 
     <PopularGames />
-
+    <PopularGamesTotal />
   </>
   );
 }

@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import placeholder from '../assets/images/placeholder.png';
 import './PopularGames.css';
 
-function PopularGames() {
+function PopularGamesTotal() {
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/popular-games/')
+    fetch('http://localhost:8000/api/popular-games-total/')
       .then((res) => res.json())
       .then((data) => setGames(data.slice(0, 6)))
       .catch((err) => console.error('Fetch error:', err));
@@ -16,7 +16,7 @@ function PopularGames() {
   return (
 <div className="popular-wrapper">
   <div className="popular-row">
-    <h2 className="popular-title">Trending Games</h2>
+    <h2 className="popular-title">Most Played Games</h2>
   </div>
   <div className="popular-row popular-games-container">
     {games.map((game) => (
@@ -42,4 +42,4 @@ function PopularGames() {
   );
 }
 
-export default PopularGames;
+export default PopularGamesTotal;

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import game_list, game_log, search_igdb, search_igdb_by_id, game_log_by_id, popular_games
+from .views import game_list, game_log, search_igdb, search_igdb_by_id, game_log_by_id, popular_games, popular_games_total
 
 urlpatterns = [
     path('games/', game_list, name='game-list'),
@@ -8,4 +8,5 @@ urlpatterns = [
     path('search-by-id/', search_igdb_by_id, name='search_igdb_by_id'),
     path('game-log-by-id/', game_log_by_id, name='game_log_by_id'),
     path('popular-games/', popular_games, name='popular_games'),
+    path('popular-games-total/', popular_games_total, name='popular_games_total'),
 ]
