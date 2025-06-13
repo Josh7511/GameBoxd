@@ -1,62 +1,75 @@
-:root {
-    --background: #1e1e1e;        /* Off-black */
-    --card: #2a2a2a;              /* Slightly lighter for containers */
-    --accent: #8f5ed3;            /* Magenta/Purple accent */
-    --text: #e0e0e0;              /* Off-white text */
-    --input-bg: #333;
-    --input-border: #444;
-  }
-
-
 .game-log-form {
-    max-width: 500px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: var(--background);
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(187, 0, 255, 0.1);
-  }
-  
-  .game-log-form h2 {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  
-  .game-log-form label {
-    display: block;
-    margin-bottom: 1rem;
-    font-weight: bold;
-  }
-  
-  .game-log-form input,
-  .game-log-form select,
-  .game-log-form textarea {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.25rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .game-log-form button {
-    display: block;
-    width: 100%;
-    padding: 0.75rem;
-    background-color: var(--accent);
-    color: var(--text);
-    border: none;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .game-log-form button:hover {
-    background-color: #9a00d6;
-  }
-  
-  .game-log-form p {
-    margin-top: 1rem;
-    text-align: center;
-    font-weight: bold;
-  }
-  
+  background-color: var(--card);
+  color: var(--text);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  max-width: 480px;
+  margin: 2rem auto;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.game-log-form h2 {
+  text-align: center;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.game-log-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.game-log-form input,
+.game-log-form select,
+.game-log-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.game-log-form input:focus,
+.game-log-form select:focus,
+.game-log-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(143, 94, 211, 0.4);
+}
+
+.game-log-form textarea {
+  resize: vertical;
+}
+
+.game-log-form button {
+  width: 100%;
+  background-color: var(--accent);
+  color: var(--text);
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.game-log-form button:hover {
+  background-color: var(--accent-hover);
+}
+
+.game-log-form p {
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 500;
+  color: var(--accent);
+}

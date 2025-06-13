@@ -51,44 +51,49 @@ function GameLogForm(){
     }
   };
   return (
-    <div className="game-log-form">
-      <h2>Log a Game</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Status:
-          <select name="status" value={form.status} onChange={handleChange}>
-            <option value="">Select status</option>
-            <option value="playlist">Playlist</option>
-            <option value="inprogress">In Progress</option>
-            <option value="completed">Completed</option>
-          </select>
-        </label>
-  
-        <label>
-          Rating (1–5):
-          <input
-            type="number"
-            name="rating"
-            min="1"
-            max="5"
-            value={form.rating}
-            onChange={handleChange}
-          />
-        </label>
-  
-        <label>
-          Review:
-          <textarea
-            name="review"
-            value={form.review}
-            onChange={handleChange}
-          />
-        </label>
-  
-        <button type="submit">Submit</button>
-        {message && <p>{message}</p>}
-      </form>
+<div className="game-log-form">
+  <h2>Log This Game</h2>
+  <form onSubmit={handleSubmit}>
+    <div className="form-group">
+      <label htmlFor="status">Status</label>
+      <select name="status" value={form.status} onChange={handleChange} required>
+        <option value="">Select status</option>
+        <option value="playlist">Playlist</option>
+        <option value="inprogress">In Progress</option>
+        <option value="completed">Completed</option>
+      </select>
     </div>
+
+    <div className="form-group">
+      <label htmlFor="rating">Rating (1–5)</label>
+      <input
+        type="number"
+        name="rating"
+        min="1"
+        max="5"
+        step="0.5"
+        value={form.rating}
+        onChange={handleChange}
+        required
+      />
+    </div>
+
+    <div className="form-group">
+      <label htmlFor="review">Review</label>
+      <textarea
+        name="review"
+        rows="5"
+        placeholder="Share your thoughts..."
+        value={form.review}
+        onChange={handleChange}
+      />
+    </div>
+
+    <button type="submit">Submit Log</button>
+    {message && <p>{message}</p>}
+  </form>
+</div>
+
   );
   
 }
