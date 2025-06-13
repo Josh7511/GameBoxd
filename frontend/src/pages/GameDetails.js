@@ -20,17 +20,20 @@ function GameDetails() {
       <NavBar />
       <div className="game-details-container">
         <h2>
-        <GameTitle />
+          <GameTitle />
         </h2>
+  
         <div className="game-main-row">
           <GameCover />
           <GameSummary />
           <GameLogForm />
         </div>
+  
         <GameReviews />
       </div>
     </>
   );
+  
 }
 
 export default GameDetails;
