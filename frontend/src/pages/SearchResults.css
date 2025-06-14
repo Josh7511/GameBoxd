@@ -28,7 +28,7 @@
   justify-content: flex-start;
 }
 
-.game-title {
+.game-titles {
   color: var(--accent);
   font-size: 1.1rem;
   font-weight: bold;
@@ -36,7 +36,7 @@
   text-decoration: none;
 }
 
-.game-title:hover {
+.game-titles:hover {
   text-decoration: underline;
   color: var(--accent-hover);
 }

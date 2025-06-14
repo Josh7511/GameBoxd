@@ -28,9 +28,9 @@ function GameDetails() {
 
       <div className="game-main-content">
         <div className="top-row">
-          <div className="game-summary">
+          <div className="game-info">
             <h1 className="game-title"><GameTitle/></h1>
-            <GameSummary />
+            <div className="game-summar"><GameSummary /></div>
           </div>
           <div className="game-log-form"><GameLogForm /></div>
         </div>

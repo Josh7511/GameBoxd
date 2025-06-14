@@ -32,10 +32,12 @@
   .game-title {
     color: var(--accent);
     font-size: 2rem;
-    margin-bottom: 0rem;
   }
   
-  .game-summary,
+  .game-info{
+
+  }
+
   .game-log-form,
   .game-reviews {
     padding: 1rem;

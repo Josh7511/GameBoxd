@@ -43,7 +43,7 @@ function SearchResults() {
         className="game-cover-thumb"
       />
       <div className="game-details">
-        <Link to={`/gamepage/${game.id}`} className="game-title">
+        <Link to={`/gamepage/${game.id}`} className="game-titles">
           {game.name}
         </Link>
         <p className="game-description">
