@@ -4,6 +4,7 @@
   }
   
   .game-main-row {
+    position: relative;
     display: flex;
     gap: 2rem;
     align-items: flex-start;
@@ -14,3 +15,13 @@
     word-wrap: break-word;
   }
   
+  .game-cover-column {
+    padding-top: 0.5rem;
+    position: sticky;
+    top: 0;
+  }
+
+  .game-reviews-row {
+    display: flex;
+    justify-content: flex-end;
+  }

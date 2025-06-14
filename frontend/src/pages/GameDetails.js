@@ -24,12 +24,15 @@ function GameDetails() {
         </h2>
   
         <div className="game-main-row">
-          <GameCover />
+          <div className="game-cover-column">
+            <GameCover />
+          </div>
           <GameSummary />
           <GameLogForm />
         </div>
-  
+        <div className="game-reviews-row">
         <GameReviews />
+        </div>
       </div>
     </>
   );
