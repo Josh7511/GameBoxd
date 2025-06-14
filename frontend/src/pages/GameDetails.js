@@ -30,7 +30,7 @@ function GameDetails() {
         <div className="top-row">
           <div className="game-info">
             <h1 className="game-title"><GameTitle/></h1>
-            <div className="game-summar"><GameSummary /></div>
+            <div className="game-summary"><GameSummary /></div>
           </div>
           <div className="game-log-form"><GameLogForm /></div>
         </div>
