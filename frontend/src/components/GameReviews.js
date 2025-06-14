@@ -20,7 +20,7 @@ return(
     <div className="review-box" key={log.id}>
       <h2>Reviewed by: {log.user} </h2>
         <h3>Rating: {log.rating}/5</h3>
-      <p>{log.review}</p>
+      <p className="textbox"> {log.review}</p>
       <p><small>{new Date(log.date_played).toLocaleDateString()}</small></p>
     </div>
   ))}

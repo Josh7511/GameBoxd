@@ -12,7 +12,7 @@
   .reviews-container {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
     gap: 1rem;
     margin-top: 1rem;
     padding: 1rem;
@@ -41,3 +41,7 @@
     color: var(--accent);
   }
   
+  .textbox {
+    word-wrap: break-word;
+    max-width: 600px;
+  }

@@ -19,21 +19,24 @@ function GameDetails() {
     <>
       <NavBar />
       <div className="game-details-container">
-        <h2>
-          <GameTitle />
-        </h2>
-  
-        <div className="game-main-row">
-          <div className="game-cover-column">
+        <div className="game-main-layout">
+            <div className="game-cover-sticky">
             <GameCover />
-          </div>
-          <GameSummary />
-          <GameLogForm />
+            </div>
+
+            <div className="game-center-column">
+            <GameSummary />
+            </div>
+            <div className="game-reviews-right">
+                <div className="game-log">
+                <GameLogForm />
+                </div>
+                <div className="game-reviews">
+                <GameReviews />
+                </div>
+            </div>
         </div>
-        <div className="game-reviews-row">
-        <GameReviews />
-        </div>
-      </div>
+    </div>
     </>
   );
   
