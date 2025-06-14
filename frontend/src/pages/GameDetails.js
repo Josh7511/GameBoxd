@@ -16,28 +16,25 @@ function GameDetails() {
   };
 
   return (
-    <>
-      <NavBar />
-      <div className="game-details-container">
-        <div className="game-main-layout">
-            <div className="game-cover-sticky">
-            <GameCover />
-            </div>
+<>
+  <NavBar />
+  <div className="game-details-container">
+    <div className="game-layout">
+      <div className="game-cover-column">
+        <GameCover />
+      </div>
 
-            <div className="game-center-column">
-            <GameSummary />
-            </div>
-            <div className="game-reviews-right">
-                <div className="game-log">
-                <GameLogForm />
-                </div>
-                <div className="game-reviews">
-                <GameReviews />
-                </div>
-            </div>
+      <div className="game-main-content">
+        <div className="top-row">
+          <div className="game-summary"><GameSummary /></div>
+          <div className="game-log-form"><GameLogForm /></div>
         </div>
+        <div className="game-reviews"><GameReviews /></div>
+      </div>
     </div>
-    </>
+  </div>
+</>
+
   );
   
 }
