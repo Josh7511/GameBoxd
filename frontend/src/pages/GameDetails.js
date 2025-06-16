@@ -19,6 +19,9 @@ function GameDetails() {
   return (
 <>
   <NavBar />
+    <div className="game-artwork-container">
+        <GameArtwork />
+    </div>
   <div className="game-details-container">
     <div className="game-layout">
     <div className="game-cover-top">
