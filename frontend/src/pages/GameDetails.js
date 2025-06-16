@@ -6,6 +6,7 @@ import GameReviews from '../components/GameReviews';
 import './GameDetails.css';
 import NavBar from '../components/NavBar';
 import GameTitle from '../components/GameTitle';
+import GameArtwork from '../components/GameArtwork';
 
 function GameDetails() {
   const navigate = useNavigate();
@@ -25,7 +26,6 @@ function GameDetails() {
         <GameCover />
       </div>
     </div>
-
       <div className="game-main-content">
         <div className="top-row">
           <div className="game-info">
