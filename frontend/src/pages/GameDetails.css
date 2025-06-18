@@ -39,7 +39,7 @@
     padding: 1rem;
     border-radius: 8px;
   }
-
+  .game-themes-title,
   .game-genres-title {
     color: var(--accent);
     font-size: 1.2rem;

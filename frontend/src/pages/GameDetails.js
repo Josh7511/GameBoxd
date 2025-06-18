@@ -9,6 +9,7 @@ import GameTitle from '../components/GameTitle';
 import GameArtwork from '../components/GameArtwork';
 import GameGenres from '../components/GameGenres';
 import GameYear from '../components/GameYear';
+import GameThemes from '../components/GameThemes';
 
 function GameDetails() {
   const navigate = useNavigate();
@@ -39,6 +40,8 @@ function GameDetails() {
             <div className="game-summary"><GameSummary /></div>
             <h3 className="game-genres-title">Genres:</h3>
             <div className="game-genres"><GameGenres/></div>
+            <h3 className="game-themes-title">Themes:</h3>
+            <div className="game-themes"><GameThemes/></div>
           </div>
           <div className="game-log-form"><GameLogForm /></div>
         </div>
