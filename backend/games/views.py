@@ -87,13 +87,14 @@ def search_igdb_by_id(request):
         'Authorization': f'Bearer {token}',
     }
 
-    body = f'fields name, summary, genres.name, cover.url, artworks.url; where id = {game_id}; limit 1;'
+    body = f'fields name, summary, genres.name, first_release_date, cover.url, artworks.url; where id = {game_id}; limit 1;'
 
     response = requests.post('https://api.igdb.com/v4/games', headers=headers, data=body)
 
     if response.status_code != 200:
         return Response({'error': 'Failed to fetch game info'}, status=response.status_code)
 
+    
     return Response(response.json())
 
 #trending games
