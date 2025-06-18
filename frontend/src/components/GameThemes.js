@@ -21,7 +21,7 @@ function GameThemes() {
   if (!game || !game.themes) return null;
 
   return (
-    <div className="game-thems">
+    <div className="game-themes">
       {game.themes.map((g) => (
         <span key={g.id} className="theme-badge">
           {g.name}

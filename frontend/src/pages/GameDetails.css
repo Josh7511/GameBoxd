@@ -1,50 +1,49 @@
 .game-details-container {
-    padding-left: 20rem;
-    padding-right: 20rem;
-  }
-  
-  .game-layout {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-  }
-  
-  .game-cover-column {
-    position: sticky;
-    top: 2rem;
-    align-self: start;
-  }
-  
-  .game-cover-top{
-    padding-top: 2rem;
-  }
-  
-  .game-main-content {
-    display: grid;
-    grid-template-rows: auto auto;
-  }
-  
-  .top-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
+  padding-left: 18rem;
+  padding-right: 18rem;
+}
 
-  .game-title {
-    color: var(--accent);
-    font-size: 2rem;
-  }
+.game-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+}
 
-  .game-log-form,
-  .game-reviews {
-    padding: 1rem;
-    border-radius: 8px;
-  }
-  .game-themes-title,
-  .game-genres-title {
-    color: var(--accent);
-    font-size: 1.2rem;
-  }
-  .game-title {
-    margin-bottom: -1rem;
-  }
-  
+.game-cover-column {
+  position: sticky;
+  top: 2rem;
+  align-self: start;
+}
+
+.game-cover-top{
+  padding-top: 2rem;
+}
+
+.game-main-content {
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+.top-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.game-title {
+  color: var(--accent);
+  font-size: 2rem;
+}
+
+.game-log-form,
+.game-reviews {
+  padding: 1rem;
+  border-radius: 8px;
+}
+.game-themes-title,
+.game-genres-title {
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+.game-title {
+  margin-bottom: -1rem;
+}

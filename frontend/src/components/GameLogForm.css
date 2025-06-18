@@ -4,7 +4,7 @@
   padding: 2rem;
   border-radius: 12px;
   max-width: 250px;
-  height: auto;
+  height: 550px;
   margin: 2rem auto;
   font-family: 'Helvetica Neue', sans-serif;
 }
@@ -49,7 +49,7 @@
 }
 
 .game-log-form textarea {
-  resize: vertical;
+  resize: none;
 }
 
 .game-log-form button {
