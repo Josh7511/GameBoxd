@@ -7,6 +7,7 @@ import './GameDetails.css';
 import NavBar from '../components/NavBar';
 import GameTitle from '../components/GameTitle';
 import GameArtwork from '../components/GameArtwork';
+import GameGenres from '../components/GameGenres';
 
 function GameDetails() {
   const navigate = useNavigate();
@@ -34,6 +35,8 @@ function GameDetails() {
           <div className="game-info">
             <h1 className="game-title"><GameTitle/></h1>
             <div className="game-summary"><GameSummary /></div>
+            <h3 className="game-genres-title">Genres:</h3>
+            <div className="game-genres"><GameGenres/></div>
           </div>
           <div className="game-log-form"><GameLogForm /></div>
         </div>
