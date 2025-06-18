@@ -1,0 +1,22 @@
+.game-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+  
+  .genre-badge {
+    background-color: var(--card);
+    color: var(--text);
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    text-transform: capitalize;
+    transition: background-color 0.2s ease;
+  }
+  
+  .genre-badge:hover {
+    background-color: var(--accent-hover);
+    color: var(--background);
+  }
+  
