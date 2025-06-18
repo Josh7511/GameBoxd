@@ -87,7 +87,7 @@ def search_igdb_by_id(request):
         'Authorization': f'Bearer {token}',
     }
 
-    body = f'fields name, summary, genres.name, first_release_date, cover.url, artworks.url; where id = {game_id}; limit 1;'
+    body = f'fields name, summary, genres.name, themes.name, first_release_date, cover.url, artworks.url; where id = {game_id}; limit 1;'
 
     response = requests.post('https://api.igdb.com/v4/games', headers=headers, data=body)
 
