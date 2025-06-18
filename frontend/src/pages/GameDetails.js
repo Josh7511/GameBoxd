@@ -8,6 +8,7 @@ import NavBar from '../components/NavBar';
 import GameTitle from '../components/GameTitle';
 import GameArtwork from '../components/GameArtwork';
 import GameGenres from '../components/GameGenres';
+import GameYear from '../components/GameYear';
 
 function GameDetails() {
   const navigate = useNavigate();
@@ -33,7 +34,8 @@ function GameDetails() {
       <div className="game-main-content">
         <div className="top-row">
           <div className="game-info">
-            <h1 className="game-title"><GameTitle/></h1>
+            <h1 className="game-title"><GameTitle/> </h1>
+            <h3 className="game-year"><GameYear/></h3>
             <div className="game-summary"><GameSummary /></div>
             <h3 className="game-genres-title">Genres:</h3>
             <div className="game-genres"><GameGenres/></div>
