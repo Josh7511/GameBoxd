@@ -14,49 +14,53 @@ function SearchResults() {
     if (!query) return;
 
     fetch(`http://localhost:8000/api/search-igdb/?query=${query}`)
-    .then(response => response.json())
-    .then(data => setResults(data))
-    .catch(error => console.error('Fetch Error', error));
-
+      .then((response) => response.json())
+      .then((data) => setResults(data))
+      .catch((error) => console.error('Fetch Error', error));
   }, [query]);
 
-  const goBack = () => {
-    navigate('/dashboard');
-  };
-
+  const goBack = () => navigate('/dashboard');
 
   return (
     <>
-    <NavBar />
-    <div className="search-results-container">
-      <h2>Search Results for "{query}"</h2>
-      <ul className="results-list">
-  {results.map((game) => (
-    <li key={game.id} className="result-item">
-      <img
-        src={
-          game.cover?.url
-            ? `https:${game.cover.url.replace('t_thumb', 't_cover_small')}`
-            : placeholder
-        }
-        alt={game.name || 'Game Cover'}
-        className="game-cover-thumb"
-      />
-      <div className="game-details">
-        <Link to={`/gamepage/${game.id}`} className="game-titles">
-          {game.name}
-        </Link>
-        <p className="game-description">
-          {game.summary || 'No description available.'}
-          </p>
+      <NavBar />
+      <div className="search-results-grid">
+        {/* ← Left column */}
+        <div className="search-results-column">
+          <h2>Search Results for "{query}"</h2>
+          <ul className="results-list">
+            {results.map((game) => (
+              <li key={game.id} className="result-item">
+                <img
+                  src={
+                    game.cover?.url
+                      ? `https:${game.cover.url.replace('t_thumb', 't_cover_small')}`
+                      : placeholder
+                  }
+                  alt={game.name || 'Game Cover'}
+                  className="game-cover-thumb"
+                />
+                <div className="game-details">
+                  <Link to={`/gamepage/${game.id}`} className="game-titles">
+                    {game.name}
+                  </Link>
+                  <p className="game-description">
+                    {game.summary || 'No description available.'}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <button className="back-button" onClick={goBack}>Go Back</button>
+        </div>
+
+        {}
+        <div className="search-sidebar">
+          <h3>Featured Widget</h3>
+        </div>
       </div>
-    </li>
-  ))}
-</ul>
-    </div>
     </>
   );
-  
 }
 
 export default SearchResults;
