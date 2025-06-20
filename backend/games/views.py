@@ -97,6 +97,9 @@ def search_igdb_by_id(request):
     
     return Response(response.json())
 
+
+
+
 #trending games
 @api_view(['GET'])
 @permission_classes([AllowAny])
