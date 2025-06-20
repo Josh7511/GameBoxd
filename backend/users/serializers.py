@@ -11,3 +11,8 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
 
 
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'username', 'email', 'bio', 'avatar', 'favorite_games']
+        read_only_fields = fields

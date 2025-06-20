@@ -28,5 +28,6 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/register/', register_user),
     path('api/', include('games.urls')),
+    path('api/', include('users.urls')),
 ]
 

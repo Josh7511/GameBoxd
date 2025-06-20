@@ -6,6 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import SearchResults from './pages/SearchResults';
 import GameDetails from './pages/GameDetails';
 import AboutMe from './pages/AboutMe';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/search" element={<SearchResults />} />
         <Route path="/gamepage/:id" element={<GameDetails />}/>
         <Route path="/about" element={<AboutMe />} />
+        <Route path="/profile" element={<Profile />} />
         <Route
           path="/dashboard"
           element={

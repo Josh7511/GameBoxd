@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from users.serializers import UserCreateSerializer
+from users.serializers import UserCreateSerializer, UserProfileSerializer
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
@@ -21,4 +21,10 @@ def register_user(request):
             user.save()
             return Response({"message": "User created successfully", "user_id": user.id}, status=201)
         return Response(serializer.errors, status=400)
+    
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_profile(request):
+    serializer = UserProfileSerializer(request.user)
+    return Response(serializer.data)
         
