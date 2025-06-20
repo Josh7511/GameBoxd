@@ -36,6 +36,7 @@ function NavBar() {
       </div>
       <div className="nav-right">
       <Link to="/about" className="nav-link">About Us</Link>
+      <Link to="/profile" className="nav-link">Profile</Link>
       </div>
     </nav>
   );
