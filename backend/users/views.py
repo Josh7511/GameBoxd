@@ -4,6 +4,22 @@ from rest_framework.response import Response
 from users.serializers import UserCreateSerializer, UserProfileSerializer, UserProfileUpdateSerializer
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.parsers import MultiPartParser, JSONParser
+from rest_framework.decorators import parser_classes
+
+@api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
+@parser_classes([MultiPartParser, JSONParser])
+def edit_user_profile(request):
+    serializer = UserProfileUpdateSerializer(
+        instance=request.user,
+        data=request.data,
+        partial=True
+    )
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
 
 
 # Create your views here.
@@ -29,15 +45,3 @@ def user_profile(request):
     return Response(serializer.data)
         
 
-@api_view(['PATCH'])
-@permission_classes([IsAuthenticated])
-def edit_user_profile(request):
-    serializer = UserProfileUpdateSerializer(
-        instance=request.user,
-        data=request.data,
-        partial=True
-    )
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    return Response(serializer.errors, status=400)

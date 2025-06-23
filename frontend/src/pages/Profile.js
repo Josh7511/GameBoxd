@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import placeholder from '../assets/images/placeholder.png';
 import './Profile.css';
@@ -6,6 +7,8 @@ import './Profile.css';
 function Profile() {
   const [profile, setProfile] = useState(null);
   const [error, setError]     = useState(null);
+  const navigate = useNavigate();
+const editProfile = () => navigate('/edit-profile');
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
@@ -63,6 +66,7 @@ function Profile() {
             <p>No favorites yet.</p>
           )}
         </div>
+        <button className="edit-profile-button" onClick={editProfile}>Edit Profile</button>
       </div>
     </>
   );

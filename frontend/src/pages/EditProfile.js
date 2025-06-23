@@ -43,50 +43,55 @@ function EditProfile() {
     setPreview(URL.createObjectURL(file));
   };
 
-  const handleSubmit = async e => {
+  // inside your handleSubmit in EditProfilePage.jsx
+
+const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-
+  
     const token = localStorage.getItem('access_token');
-    let body, headers;
-
-    if (avatarFile) {
-      body = new FormData();
-      body.append('email', form.email);
-      body.append('bio', form.bio);
-      body.append('favorite_games', JSON.stringify(
-        form.favorite_games.split(',').map(s => s.trim()).filter(Boolean)
-      ));
-      body.append('avatar', avatarFile);
-      headers = { 'Authorization': `Bearer ${token}` };
-    } else {
-      body = JSON.stringify({
-        email: form.email,
-        bio: form.bio,
-        favorite_games: form.favorite_games
+    const formData = new FormData();
+  
+    formData.append('email',           form.email);
+    formData.append('bio',             form.bio);
+    formData.append(
+      'favorite_games',
+      JSON.stringify(
+        form.favorite_games
           .split(',')
           .map(s => s.trim())
           .filter(Boolean)
-      });
-      headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      };
+      )
+    );
+    if (avatarFile) {
+      formData.append('avatar', avatarFile);
     }
-
+  
     const res = await fetch('http://localhost:8000/api/profile/edit/', {
       method: 'PATCH',
-      headers,
-      body
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        // **no** Content-Type here! let the browser set multipart boundaries
+      },
+      body: formData,
     });
-
+  
+    // Only attempt to parse JSON if the Content-Type is JSON
+    const contentType = res.headers.get('Content-Type') || '';
     if (res.ok) {
+      // success! profile updated
       navigate('/profile');
     } else {
-      const err = await res.json();
-      setError(Object.values(err).flat().join(' '));
+      const text = await res.text();             // raw text
+      let errMsg = text;
+      if (contentType.includes('application/json')) {
+        const json = JSON.parse(text);
+        errMsg = Object.values(json).flat().join(' ');
+      }
+      setError(`Error ${res.status}: ${errMsg}`);
     }
   };
+  
 
   return (
     <>
