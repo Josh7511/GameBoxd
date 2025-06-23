@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link} from 'react-router-dom';
 import './NavBar.css';
 import controller from '../assets/images/controller.png';
+import placeholder from '../assets/images/placeholder.png';
 
 function NavBar() {
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
+  const [profile, setProfile] = useState({});
+  const [error, setError] = useState(null);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -13,6 +16,27 @@ function NavBar() {
       navigate(`/search?query=${query}`);
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      setError('Not logged in');
+      return;
+    }
+
+    fetch('http://localhost:8000/api/profile/', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+      .then(res => {
+        if (!res.ok) throw new Error(`Status ${res.status}`);
+        return res.json();
+      })
+      .then(data => setProfile(data))
+      .catch(err => setError(err.message));
+  }, []);
 
   return (
     <nav className="navbar">
@@ -36,7 +60,13 @@ function NavBar() {
       </div>
       <div className="nav-right">
       <Link to="/about" className="nav-link">About Us</Link>
-      <Link to="/profile" className="nav-link">Profile</Link>
+      <Link to="/profile" className="nav-link">
+        <img
+            src={ profile.avatar || placeholder }
+            alt="Avatar"
+            className="profile-link"
+         />
+        </Link>
       </div>
     </nav>
   );

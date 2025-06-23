@@ -8,7 +8,7 @@ function Profile() {
   const [profile, setProfile] = useState(null);
   const [error, setError]     = useState(null);
   const navigate = useNavigate();
-const editProfile = () => navigate('/edit-profile');
+  const editProfile = () => navigate('/edit-profile');
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
