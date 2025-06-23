@@ -16,3 +16,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ['id', 'username', 'email', 'bio', 'avatar', 'favorite_games']
         read_only_fields = fields
+
+class UserProfileUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['email', 'bio', 'avatar', 'favorite_games']
+        extra_kwargs = {
+            'favorite_games': {'required': False},
+            'avatar': {'required': False, 'allow_null': True},
+        }

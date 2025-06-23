@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from users.serializers import UserCreateSerializer, UserProfileSerializer
+from users.serializers import UserCreateSerializer, UserProfileSerializer, UserProfileUpdateSerializer
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
@@ -28,3 +28,16 @@ def user_profile(request):
     serializer = UserProfileSerializer(request.user)
     return Response(serializer.data)
         
+
+@api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
+def edit_user_profile(request):
+    serializer = UserProfileUpdateSerializer(
+        instance=request.user,
+        data=request.data,
+        partial=True
+    )
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)
