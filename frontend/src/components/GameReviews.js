@@ -35,11 +35,11 @@ function GameReviews() {
         return (
           <div className="review-box" key={log.id}>
             <div className="review-header">
-              <img
-                src={placeholderAvatar}
-                alt={`${log.user}'s avatar`}
-                className="review-avatar"
-              />
+            <img
+              src={log.user_avatar || placeholderAvatar}
+              alt={`${log.user}'s avatar`}
+              className="review-avatar"
+            />
               <div className="review-meta">
                 <p className="review-by">
                   Review by <strong>{log.user}</strong>

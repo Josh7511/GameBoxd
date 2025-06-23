@@ -28,15 +28,20 @@ def game_log(request):
         return Response(serializer.errors, status=400)
     
 
+
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def game_log_by_id(request):
     game_id = request.GET.get('query', '')
     if not game_id:
         return Response({'error': 'Game ID is required'}, status=400)
-    
+
     logs = GameLog.objects.filter(game_id=game_id)
-    serializer = GameLogSerializer(logs, many=True)
+    serializer = GameLogSerializer(
+        logs,
+        many=True,
+        context={'request': request}   
+    )
     return Response(serializer.data)
 
      
