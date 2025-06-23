@@ -41,7 +41,8 @@ def register_user(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def user_profile(request):
-    serializer = UserProfileSerializer(request.user)
+    serializer = UserProfileSerializer(
+        request.user,
+        context={'request': request}
+    )
     return Response(serializer.data)
-        
-

@@ -39,15 +39,11 @@ const editProfile = () => navigate('/edit-profile');
       <NavBar />
       <div className="profile-page">
         <div className="profile-card">
-          <img
-            src={
-              profile.avatar
-                ? `http://localhost:8000${profile.avatar}`
-                : placeholder
-            }
+         <img
+            src={ profile.avatar || placeholder }
             alt="Avatar"
             className="profile-avatar"
-          />
+         />
           <h1 className="profile-username">{profile.username}</h1>
           <p className="profile-email">{profile.email}</p>
 

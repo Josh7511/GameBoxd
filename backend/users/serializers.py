@@ -10,9 +10,11 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
+    avatar = serializers.ImageField(read_only=True, use_url=True)
+
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'email', 'bio', 'avatar', 'favorite_games']
+        fields = ['id','username','email','bio','avatar','favorite_games']
         read_only_fields = fields
 
 class UserProfileUpdateSerializer(serializers.ModelSerializer):
