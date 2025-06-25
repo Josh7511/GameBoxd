@@ -25,7 +25,7 @@ function EditProfile() {
         setForm({
           email: data.email || '',
           bio: data.bio || '',
-          favorite_games: data.favorite_games.join(',') // comma list
+          favorite_games: data.favorite_games.join(',') 
         });
         setPreview(data.avatar ? `http://localhost:8000${data.avatar}` : null);
       })
@@ -43,7 +43,6 @@ function EditProfile() {
     setPreview(URL.createObjectURL(file));
   };
 
-  // inside your handleSubmit in EditProfilePage.jsx
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,18 +70,15 @@ const handleSubmit = async (e) => {
       method: 'PATCH',
       headers: {
         'Authorization': `Bearer ${token}`,
-        // **no** Content-Type here! let the browser set multipart boundaries
       },
       body: formData,
     });
   
-    // Only attempt to parse JSON if the Content-Type is JSON
     const contentType = res.headers.get('Content-Type') || '';
     if (res.ok) {
-      // success! profile updated
       navigate('/profile');
     } else {
-      const text = await res.text();             // raw text
+      const text = await res.text();        
       let errMsg = text;
       if (contentType.includes('application/json')) {
         const json = JSON.parse(text);
