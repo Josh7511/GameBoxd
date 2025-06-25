@@ -56,13 +56,14 @@ function Profile() {
       <NavBar />
       <div className="profile-page">
         <div className="profile-card">
-          <img
-            src={profile.avatar || placeholder}
-            alt="Avatar"
-            className="profile-avatar"
-          />
-          <h1 className="profile-username">{profile.username}</h1>
-          <p className="profile-email">{profile.email}</p>
+          <div className="profile-header">
+            <img
+              src={profile.avatar || placeholder}
+              alt="Avatar"
+              className="profile-avatar"
+            />
+            <h1 className="profile-username">{profile.username}</h1>
+          </div>
           <p className="profile-bio">
             {profile.bio || 'No bio provided.'}
           </p>
