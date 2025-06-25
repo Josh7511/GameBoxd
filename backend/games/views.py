@@ -7,6 +7,7 @@ from games.serializers import GameSerializer, GameLogSerializer
 from .models import GameLog
 from django.conf import settings
 import requests
+from django.db.models import F
 
 @api_view(['GET', 'POST'])
 @permission_classes([AllowAny])
@@ -24,6 +25,9 @@ def game_log(request):
         serializer = GameLogSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=request.user)
+            #this increments the review count 
+            request.user.__class__.objects.filter(pk=request.user.pk) \
+                .update(review_count=F('review_count') + 1)
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
     

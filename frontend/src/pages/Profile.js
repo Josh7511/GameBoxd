@@ -69,6 +69,7 @@ function Profile() {
             >
               Edit Profile
             </button>
+            <h1 className="game-review-count">{profile.review_count}</h1>
           </div>
           <p className="profile-bio">
             {profile.bio || 'No bio provided.'}
