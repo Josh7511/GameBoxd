@@ -63,3 +63,37 @@
     text-align: center;
   }
   
+  /* grid of favorite game covers */
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.favorite-game-card {
+  background: var(--card);
+  padding: 0.5rem;
+  border-radius: 6px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.favorite-game-card:hover {
+  transform: translateY(-4px);
+}
+
+.favorite-game-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.favorite-game-title {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

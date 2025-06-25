@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import placeholder from '../assets/images/placeholder.png';
@@ -6,10 +6,13 @@ import './Profile.css';
 
 function Profile() {
   const [profile, setProfile] = useState(null);
-  const [error, setError]     = useState(null);
+  const [favoriteGames, setFavoriteGames] = useState([]);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
+
   const editProfile = () => navigate('/edit-profile');
 
+  // 1) fetch the user profile
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     if (!token) {
@@ -31,7 +34,23 @@ function Profile() {
       .catch(err => setError(err.message));
   }, []);
 
-  if (error)   return <div className="profile-page"><p className="error">{error}</p></div>;
+  // 2) once we have profile.favorite_games, fetch each game’s info
+  useEffect(() => {
+    if (!profile?.favorite_games?.length) return;
+
+    Promise.all(
+      profile.favorite_games.map((gid) =>
+        fetch(`http://localhost:8000/api/search-by-id/?id=${gid}`)
+          .then(res => (res.ok ? res.json() : []))
+          .then(arr => arr[0] || null)
+          .catch(() => null)
+      )
+    ).then(games => {
+      setFavoriteGames(games.filter(Boolean));
+    });
+  }, [profile]);
+
+  if (error)    return <div className="profile-page"><p className="error">{error}</p></div>;
   if (!profile) return <div className="profile-page"><p>Loading...</p></div>;
 
   return (
@@ -39,30 +58,44 @@ function Profile() {
       <NavBar />
       <div className="profile-page">
         <div className="profile-card">
-         <img
-            src={ profile.avatar || placeholder }
+          <img
+            src={profile.avatar || placeholder}
             alt="Avatar"
             className="profile-avatar"
-         />
+          />
           <h1 className="profile-username">{profile.username}</h1>
           <p className="profile-email">{profile.email}</p>
-
           <p className="profile-bio">
             {profile.bio || 'No bio provided.'}
           </p>
 
+          <button
+            className="edit-profile-button"
+            onClick={editProfile}
+          >
+            Edit Profile
+          </button>
+
           <h2>Favorite Games</h2>
-          {profile.favorite_games.length > 0 ? (
-            <ul className="favorites-list">
-              {profile.favorite_games.map((gid) => (
-                <li key={gid}>Game ID: {gid}</li>
+          {favoriteGames.length > 0 ? (
+            <div className="favorites-grid">
+              {favoriteGames.map((game) => (
+                <div className="favorite-game-card" key={game.id}>
+                  <img
+                    src={
+                      game.cover?.url
+                        ? `https:${game.cover.url.replace('t_thumb', 't_cover_small')}`
+                        : placeholder
+                    }
+                    alt={game.name || 'Game Cover'}
+                  />
+                </div>
               ))}
-            </ul>
+            </div>
           ) : (
             <p>No favorites yet.</p>
           )}
         </div>
-        <button className="edit-profile-button" onClick={editProfile}>Edit Profile</button>
       </div>
     </>
   );
