@@ -12,7 +12,6 @@ function Profile() {
 
   const editProfile = () => navigate('/edit-profile');
 
-  // 1) fetch the user profile
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     if (!token) {
@@ -33,8 +32,7 @@ function Profile() {
       .then(data => setProfile(data))
       .catch(err => setError(err.message));
   }, []);
-
-  // 2) once we have profile.favorite_games, fetch each game’s info
+  
   useEffect(() => {
     if (!profile?.favorite_games?.length) return;
 
@@ -84,7 +82,7 @@ function Profile() {
                   <img
                     src={
                       game.cover?.url
-                        ? `https:${game.cover.url.replace('t_thumb', 't_cover_small')}`
+                        ? `https:${game.cover.url.replace('t_thumb', 't_cover_big')}`
                         : placeholder
                     }
                     alt={game.name || 'Game Cover'}
