@@ -44,7 +44,7 @@ function NavBar() {
         <Link to="/dashboard" style={{ textDecoration: 'none' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0rem' }}>
                 <img src={controller} alt="Controller Icon" style={{ width: '60px', height: 'auto' }} />
-                <h2 style={{ margin: 0, color: 'var(--accent)' }}>GameBoxd</h2>
+                <h2 style={{ margin: 0, color: 'var(--accent)' }}>Gameboxd</h2>
             </div>
         </Link>
       <div className="nav-center">

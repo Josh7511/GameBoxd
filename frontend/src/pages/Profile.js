@@ -63,18 +63,16 @@ function Profile() {
               className="profile-avatar"
             />
             <h1 className="profile-username">{profile.username}</h1>
+            <button
+              className="edit-profile-button"
+              onClick={editProfile}
+            >
+              Edit Profile
+            </button>
           </div>
           <p className="profile-bio">
             {profile.bio || 'No bio provided.'}
           </p>
-
-          <button
-            className="edit-profile-button"
-            onClick={editProfile}
-          >
-            Edit Profile
-          </button>
-
           <h2>Favorite Games</h2>
           {favoriteGames.length > 0 ? (
             <div className="favorites-grid">
