@@ -78,23 +78,24 @@
 
   .profile-bio-and-games {
     display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    flex-wrap: wrap; /* will stack on narrow screens */
+    flex-wrap: nowrap;
+    gap:2rem;
   }
   
-  /* --- Games column (left) --- */
   .games-column {
-    flex: 2;            /* gives twice the space vs. bio-column */
-    min-width: 200px;   /* won’t shrink below this */
+    flex: 0 0 600px;            
+    width: 600px;
   }
+
+
   
-  /* keep the header tight above the grid */
   .games-column h4 {
-    margin-bottom: 0.5rem;
+    border-bottom: var(--text) 0.1px solid;
+    margin-bottom: 0.rem;
+    color: var(--text);
+    font-weight: 500;
   }
   
-  /* grid of covers */
   .favorites-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -116,21 +117,25 @@
   
 
   .bio-column {
-    flex: 1;
-    min-width: 180px;
+    width: 300px;
+    flex: 0 0 300px;
   }
   
 
   .bio-column h4 {
     border-bottom: var(--text) 0.1px solid;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0rem;
     color: var(--text);
+    font-weight: 500;
   }
   
   .profile-bio {
-    padding: 1rem;
-    border-radius: 6px;
+    max-width: 100%;
     line-height: 1.6;
+    white-space: normal;
+    word-wrap: break-word;
+    font-size: 0.9rem;
+    margin-top: 0.4rem;
   }
   
   .error {
