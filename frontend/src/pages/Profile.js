@@ -78,28 +78,39 @@ function Profile() {
                 </span>
               </h4>
           </div>
-          <p className="profile-bio">
-            {profile.bio || 'No bio provided.'}
-          </p>
-          <h2>Favorite Games</h2>
-          {favoriteGames.length > 0 ? (
-            <div className="favorites-grid">
-              {favoriteGames.map((game) => (
-                <div className="favorite-game-card" key={game.id}>
-                  <img
-                    src={
-                      game.cover?.url
-                        ? `https:${game.cover.url.replace('t_thumb', 't_cover_big')}`
-                        : placeholder
-                    }
-                    alt={game.name || 'Game Cover'}
-                  />
+          <div className="profile-bio-and-games">
+            <div className="games-column">
+              <h4>Favorite Games</h4>
+              {favoriteGames.length > 0 ? (
+                <div className="favorites-grid">
+                  {favoriteGames.map((game) => (
+                    <div className="favorite-game-card" key={game.id}>
+                      <img
+                        src={
+                          game.cover?.url
+                            ? `https:${game.cover.url.replace(
+                                't_thumb',
+                                't_cover_big'
+                              )}`
+                            : placeholder
+                        }
+                        alt={game.name || 'Game Cover'}
+                        className="favorite-game-image"
+                      />
+                    </div>
+                  ))}
                 </div>
-              ))}
+              ) : (
+                <p>No favorites yet.</p>
+              )}
             </div>
-          ) : (
-            <p>No favorites yet.</p>
-          )}
+            <div className="bio-column">
+              <h4>About Me</h4>
+              <p className="profile-bio">
+                {profile.bio || 'No bio provided.'}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </>

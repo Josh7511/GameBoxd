@@ -76,24 +76,61 @@
     font-weight: bold;
   }
 
- 
-
-  .profile-bio {
-    margin: 1rem 0 2rem;
-    line-height: 1.4;
+  .profile-bio-and-games {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap; /* will stack on narrow screens */
   }
   
-  .favorites-list {
-    list-style: none;
-    padding: 0;
+  /* --- Games column (left) --- */
+  .games-column {
+    flex: 2;            /* gives twice the space vs. bio-column */
+    min-width: 200px;   /* won’t shrink below this */
   }
   
-  .favorites-list li {
-    background: var(--background);
-    margin: 0.5rem 0;
-    padding: 0.75rem;
+  /* keep the header tight above the grid */
+  .games-column h4 {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* grid of covers */
+  .favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+  
+  .favorite-game-card {
+    background: var(--card);
     border-radius: 6px;
-    text-align: left;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  
+  .favorite-game-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+
+  .bio-column {
+    flex: 1;
+    min-width: 180px;
+  }
+  
+
+  .bio-column h4 {
+    border-bottom: var(--text) 0.1px solid;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+  
+  .profile-bio {
+    padding: 1rem;
+    border-radius: 6px;
+    line-height: 1.6;
   }
   
   .error {
@@ -101,28 +138,3 @@
     text-align: center;
   }
   
-
-  .favorites-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 1.5rem;
-    justify-content: center;
-    margin: 1rem auto;
-    justify-items: center;
-  }
-  
-  .favorite-game-card {
-    width: 150px;           
-    text-align: center;
-
-  }
-.favorite-game-card:hover {
-  transform: translateY(-4px);
-}
-
-.favorite-game-card img {
-  width: 150px;
-  height: auto;
-  border-radius: 4px;
-}
-
