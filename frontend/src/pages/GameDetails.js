@@ -45,6 +45,11 @@ function GameDetails() {
           </div>
           <div className="game-log-form"><GameLogForm /></div>
         </div>
+        <div className="game-reviews-title">
+          <h4>
+            Game Reviews:
+          </h4>
+        </div>
         <div className="game-reviews"><GameReviews /></div>
       </div>
     </div>

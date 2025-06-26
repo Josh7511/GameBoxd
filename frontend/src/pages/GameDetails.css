@@ -34,8 +34,26 @@
   font-size: 2rem;
 }
 
-.game-log-form,
+.game-reviews-title {
+  border-bottom: var(--text) 0.1px solid;
+}
+
+.game-reviews-title h4{
+  margin: 0;
+  padding: 0.25rem 0;
+  line-height: 1;
+  vertical-align: bottom;
+  color: var(--accent);
+}
+
+.game-log-form {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
 .game-reviews {
+  margin-top: 0rem;
   padding: 1rem;
   border-radius: 8px;
 }
