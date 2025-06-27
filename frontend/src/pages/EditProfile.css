@@ -73,7 +73,7 @@
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: var(--background) 0.2s ease;
   }
   
   .edit-form button:hover {
@@ -85,12 +85,11 @@
     text-align: center;
   }
   
- /* grid of four fixed slots */
 .favorite-games-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
 }
 
 .favorite-game-slot {

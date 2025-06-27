@@ -1,25 +1,27 @@
-// src/pages/EditProfile.jsx
 import React, { useState, useEffect } from 'react';
-import { useNavigate }        from 'react-router-dom';
-import NavBar                 from '../components/NavBar';
-import placeholderAvatar      from '../assets/images/placeholder-avatar.png';
-import placeholderCover       from '../assets/images/placeholder.png';
+import { useNavigate } from 'react-router-dom';
+import NavBar from '../components/NavBar';
+import placeholderAvatar from '../assets/images/placeholder-avatar.png';
+import placeholderCover from '../assets/images/placeholder.png';
 import './EditProfile.css';
 
 function EditProfile() {
   const navigate = useNavigate();
 
-  const [form, setForm]             = useState({ email: '', bio: '', favorite_games: '' });
+  const [form, setForm] = useState({
+    email: '',
+    bio: '',
+    favorite_games: ''
+  });
   const [avatarFile, setAvatarFile] = useState(null);
-  const [preview, setPreview]       = useState(null);
-  const [error, setError]           = useState(null);
-
-  const [favIds, setFavIds]             = useState(['', '', '', '']);
+  const [preview, setPreview] = useState(placeholderAvatar);
+  const [error, setError] = useState(null);
+  const [favIds, setFavIds] = useState(['', '', '', '']);
   const [favGamesData, setFavGamesData] = useState([{}, {}, {}, {}]);
-  const [showModal, setShowModal]       = useState(false);
-  const [editingSlot, setEditingSlot]   = useState(null);
-  const [searchTerm, setSearchTerm]     = useState('');
-  const [suggestions, setSuggestions]   = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [editingSlot, setEditingSlot] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [suggestions, setSuggestions]  = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
@@ -37,12 +39,16 @@ function EditProfile() {
           bio: data.bio || '',
           favorite_games: JSON.stringify(arr.filter(Boolean))
         });
-        setPreview(data.avatar ? `http://localhost:8000${data.avatar}` : null);
+
+        setPreview(
+          data.avatar
+            ? `http://localhost:8000${data.avatar}`
+            : placeholderAvatar
+        );
       })
       .catch(() => setError('Failed to load profile'));
   }, []);
 
- //fetch game details on id change
   useEffect(() => {
     favIds.forEach((id, idx) => {
       if (!id) {
@@ -53,29 +59,28 @@ function EditProfile() {
         });
         return;
       }
-
       fetch(`http://localhost:8000/api/search-by-id/?id=${id}`)
         .then(r => r.json())
         .then(data => {
-          if (data.length > 0) {
-            const game = data[0];
+          if (data.length) {
+            const g = data[0];
             setFavGamesData(prev => {
               const copy = [...prev];
               copy[idx] = {
-                id: game.id,
-                name: game.name,
-                coverUrl: game.cover
-                  ? `https:${game.cover.url.replace('t_thumb','t_cover_big')}`
+                id: g.id,
+                name: g.name,
+                coverUrl: g.cover
+                  ? `https:${g.cover.url.replace('t_thumb','t_cover_big')}`
                   : null
               };
               return copy;
             });
           }
-        });
+        })
+        .catch(() => {});
     });
   }, [favIds]);
 
- //fetches the game suggestions based on search term
   useEffect(() => {
     if (!showModal || !searchTerm) {
       setSuggestions([]);
@@ -83,7 +88,7 @@ function EditProfile() {
     }
     fetch(`http://localhost:8000/api/search-igdb/?query=${encodeURIComponent(searchTerm)}`)
       .then(r => r.json())
-      .then(games => setSuggestions(games.slice(0, 5)))
+      .then(games => setSuggestions(games.slice(0,5)))
       .catch(() => setSuggestions([]));
   }, [searchTerm, showModal]);
 
@@ -92,26 +97,22 @@ function EditProfile() {
     setAvatarFile(file);
     setPreview(URL.createObjectURL(file));
   };
-
   const handleChange = e => {
     const { name, value } = e.target;
     setForm(f => ({ ...f, [name]: value }));
   };
-
   const openModal = idx => {
     setEditingSlot(idx);
     setSearchTerm('');
     setSuggestions([]);
     setShowModal(true);
   };
-
   const closeModal = () => {
     setShowModal(false);
     setEditingSlot(null);
     setSearchTerm('');
     setSuggestions([]);
   };
-
   const pickSuggestion = game => {
     const updated = [...favIds];
     updated[editingSlot] = game.id;
@@ -164,11 +165,14 @@ function EditProfile() {
           <label>
             Avatar
             <div className="avatar-preview">
-              <img src={preview || placeholderAvatar} alt="Avatar preview" />
+              <img
+                src={preview|| placeholderAvatar}
+                alt="Avatar preview"
+                className="avatar-preview-img"
+              />
             </div>
             <input type="file" accept="image/*" onChange={handleFile} />
           </label>
-
           <label>
             Email
             <input
@@ -178,7 +182,6 @@ function EditProfile() {
               onChange={handleChange}
             />
           </label>
-
           <label>
             Bio
             <textarea
@@ -187,7 +190,6 @@ function EditProfile() {
               onChange={handleChange}
             />
           </label>
-
           <div className="favorite-games-section">
             <h2>Favorite Games</h2>
             <div className="favorite-games-grid">
@@ -195,7 +197,7 @@ function EditProfile() {
                 <div key={idx} className="favorite-game-slot">
                   <img
                     src={game.coverUrl || placeholderCover}
-                    alt={game.name || `Slot ${idx + 1}`}
+                    alt={game.name || `Slot ${idx+1}`}
                     className="favorite-game-thumb"
                     onClick={() => openModal(idx)}
                   />
@@ -209,7 +211,6 @@ function EditProfile() {
           </button>
         </form>
       </div>
-
       {showModal && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
@@ -231,7 +232,7 @@ function EditProfile() {
                           ? `https:${g.cover.url.replace('t_thumb','t_cover_small')}`
                           : placeholderCover
                       }
-                      alt=""
+                      alt={g.name}
                       className="fav-dropdown-thumb"
                     />
                     <span>{g.name}</span>
