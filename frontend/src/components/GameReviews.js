@@ -14,7 +14,7 @@ function GameReviews() {
       .catch((error) => console.error('Fetch Error', error));
   }, [id]);
 
-  // helper to render stars, half‐stars, etc.
+
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
     const halfStar = rating % 1 >= 0.5;
