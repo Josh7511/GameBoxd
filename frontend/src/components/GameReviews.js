@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link} from 'react-router-dom';
 import placeholderAvatar from '../assets/images/placeholder-avatar.png';
 import './GameReviews.css';
 
@@ -42,7 +42,10 @@ function GameReviews() {
             />
               <div className="review-meta">
                 <p className="review-by">
-                  Review by <strong>{log.user}</strong>
+                Review by{' '}
+                  <Link to={`/profile/${log.user}`}>
+                  <strong>{log.user}</strong>
+                  </Link>
                 </p>
                 <div className="review-rating">
                   {renderStars(log.rating)}

@@ -59,7 +59,7 @@ function NavBar() {
         </form>
       </div>
       <div className="nav-right">
-      <Link to="/about" className="nav-link">About Us</Link>
+      <Link to="/about" className="about-me">About Me</Link>
       <Link to="/profile" className="nav-link">
         <img
             src={ profile.avatar || placeholder }
