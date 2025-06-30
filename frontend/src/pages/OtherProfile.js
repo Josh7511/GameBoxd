@@ -49,8 +49,8 @@ export default function OtherProfile() {
         <div className="profile-card">
           <div className="profile-header">
             <img
-              src={profile.avatar || placeholder}
-              alt="Avatar"
+              src={profile.avatar ? `http://localhost:8000${profile.avatar}` : placeholder}
+              alt={`${profile.username}'s avatar`}
               className="profile-avatar"
             />
             <h1 className="profile-username">{profile.username}</h1>
