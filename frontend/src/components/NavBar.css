@@ -22,13 +22,7 @@
     font-weight: 500;
   }
 
-  .about-me {
-    margin-left: 1rem;
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 500;
-    padding-top: 10px;
-  }
+
   
   .nav-link:hover {
     color: var(--accent-hover);
@@ -67,4 +61,11 @@
     border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
+  }
+
+  .profile-link:hover {
+    border-color: var(--accent);
+    border-style: solid;
+    border-width: 2px;
+    transform: scale(1.07);
   }
