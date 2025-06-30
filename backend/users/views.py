@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from users.serializers import UserCreateSerializer, UserProfileSerializer, UserProfileUpdateSerializer
@@ -6,6 +6,7 @@ from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.parsers import MultiPartParser, JSONParser
 from rest_framework.decorators import parser_classes
+from users.models import CustomUser
 
 @api_view(['PATCH'])
 @permission_classes([IsAuthenticated])
@@ -45,4 +46,11 @@ def user_profile(request):
         request.user,
         context={'request': request}
     )
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def other_user_profile(request, username):
+    user = get_object_or_404(CustomUser, username=username)
+    serializer = UserProfileSerializer(user)
     return Response(serializer.data)

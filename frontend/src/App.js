@@ -8,6 +8,7 @@ import GameDetails from './pages/GameDetails';
 import AboutMe from './pages/AboutMe';
 import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
+import OtherProfile from './pages/OtherProfile';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/about" element={<AboutMe />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/profile/:username" element={<OtherProfile />} />
         <Route
           path="/dashboard"
           element={
