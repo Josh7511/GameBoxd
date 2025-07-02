@@ -31,6 +31,7 @@ urlpatterns = [
     path('api/register/', register_user),
     path('api/', include('games.urls')),
     path('api/', include('users.urls')),
+    path('api/', include('social.urls')),
 ]
 
 if settings.DEBUG:
