@@ -3,7 +3,9 @@ import { useParams } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import placeholder from '../assets/images/placeholder.png'
 import FollowButton from '../components/FollowButton'
+import FollowersCount from '../components/FollowersCount'
 import './Profile.css'
+
 
 export default function OtherProfile() {
   const { username } = useParams()
@@ -60,6 +62,7 @@ export default function OtherProfile() {
               <span className="game-review-count">{profile.review_count}</span>
               <span className="game-review-count-label">Games</span>
             </h4>
+            <FollowersCount username={profile.username} />
           </div>
           <div className="profile-bio-and-games">
             <div className="games-column">
