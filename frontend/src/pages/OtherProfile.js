@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import placeholder from '../assets/images/placeholder.png'
+import FollowButton from '../components/FollowButton'
 import './Profile.css'
 
 export default function OtherProfile() {
@@ -54,6 +55,7 @@ export default function OtherProfile() {
               className="profile-avatar"
             />
             <h1 className="profile-username">{profile.username}</h1>
+            <FollowButton targetUserId={profile.id} />
             <h4 className="game-review-statistic">
               <span className="game-review-count">{profile.review_count}</span>
               <span className="game-review-count-label">Games</span>
