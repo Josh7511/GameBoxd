@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'users',  # Custom user app
     'corsheaders',
     'games',
+    'social'
 ]
 
 IGDB_CLIENT_ID = 'n8lbz1aidaqtb31xtuf0pqrrt0my0q'
