@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import './FollowButton.css'
 
 export default function FollowButton({ targetUserId }) {
   const [isFollowing, setIsFollowing] = useState(false)
