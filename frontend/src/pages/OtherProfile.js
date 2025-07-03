@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar'
 import placeholder from '../assets/images/placeholder.png'
 import FollowButton from '../components/FollowButton'
 import FollowersCount from '../components/FollowersCount'
+import FollowingCount from '../components/FollowingCount'
 import './Profile.css'
 
 
