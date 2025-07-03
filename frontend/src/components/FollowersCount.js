@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
+
 export default function FollowersCount({ username: usernameProp }) {
   const { username: usernameParam } = useParams()
   const username = usernameProp || usernameParam
@@ -50,11 +51,11 @@ export default function FollowersCount({ username: usernameProp }) {
   }, [username])
 
   if (loading) return <span>Loading…</span>
-  if (error)   return <span>0 Followers</span>
+  if (error)   return <span>0</span>
 
   return (
     <span className="followers-count">
-      {count} {count === 1 ? 'Follower' : 'Followers'}
+      {count}
     </span>
   )
 }
