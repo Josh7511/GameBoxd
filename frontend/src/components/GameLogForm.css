@@ -66,7 +66,7 @@
 }
 
 .game-log-form button:hover {
-  background-color: var(--accent-hover);
+  background-color: var(--secondary);
 }
 
 .game-log-form p {

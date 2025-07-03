@@ -81,5 +81,5 @@
 }
 
 .like-button:hover {
-  color: var(--accent-hover);
+  color: var(--secondary);
 }

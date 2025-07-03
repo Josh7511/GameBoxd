@@ -77,7 +77,7 @@
   }
   
   .edit-form button:hover {
-    background: var(--accent-hover);
+    background: var(--secondary);
   }
   
   .error {

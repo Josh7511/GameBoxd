@@ -69,7 +69,7 @@
   }
   
   .register-container button:hover {
-    background-color: var(--accent-hover);
+    background-color: var(--secondary);
   }
   
   .register-container p {

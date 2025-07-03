@@ -69,7 +69,7 @@
   }
   
   .login-container button:hover {
-    background-color: #9a00d6;
+    background-color: var(--secondary);
   }
   
   .login-container p {

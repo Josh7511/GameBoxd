@@ -25,7 +25,7 @@
 
   
   .nav-link:hover {
-    color: var(--accent-hover);
+    color: var(--secondary);
   }
   
   .search-form {
@@ -52,7 +52,7 @@
   }
   
   .search-form button:hover {
-    background-color: var(--accent-hover);
+    background-color: var(--secondary);
   }
 
   .profile-link{
@@ -64,7 +64,7 @@
   }
 
   .profile-link:hover {
-    border-color: var(--accent);
+    border-color: var(--secondary);
     border-style: solid;
     border-width: 2px;
     transform: scale(1.07);

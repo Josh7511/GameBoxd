@@ -16,15 +16,14 @@
 }
 
 .follow-btn:hover {
-  background-color: var(--accent-hover);
+  background-color: var(--secondary);
 }
 
 .unfollow-btn {
-  background-color: var(--card);
+  background-color: var(--secondary);
   color: var(--text);
-  border: 1px solid var(--text);
 }
 
 .unfollow-btn:hover {
-  background-color: var(--input-bg);
+  background-color: var(--accent);
 }

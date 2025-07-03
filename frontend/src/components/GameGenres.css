@@ -15,7 +15,7 @@
   }
   
   .genre-badge:hover {
-    background-color: var(--accent-hover);
+    background-color: var(--secondary);
     color: var(--background);
   }
   
