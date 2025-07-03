@@ -1,11 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from rest_framework import generics, permissions
 from .models import Follow
 from .serializers import FollowSerializer
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
-
 
 class FollowCreateView(generics.CreateAPIView):
     serializer_class = FollowSerializer
@@ -29,15 +25,13 @@ class FollowersListView(generics.ListAPIView):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        username = self.kwargs["username"]
-        user = get_object_or_404(User, username=username)
-        return Follow.objects.filter(followee=user)
+        user_id = self.kwargs["user_id"]
+        return Follow.objects.filter(followee_id=user_id)
 
 class FollowingListView(generics.ListAPIView):
     serializer_class = FollowSerializer
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        username = self.kwargs["username"]
-        user = get_object_or_404(User, username=username)
-        return Follow.objects.filter(followee=user)
+        user_id = self.kwargs["user_id"]
+        return Follow.objects.filter(follower_id=user_id)
