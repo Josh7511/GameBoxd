@@ -6,15 +6,10 @@ export default function FollowersCount({ username: usernameProp }) {
   const { username: usernameParam } = useParams()
   const username = usernameProp || usernameParam
 
-  const [count, setCount]     = useState(0)
-  const [loading, setLoading] = useState(true)
-  const [error, setError]     = useState(false)
+  const [count, setCount] = useState(0)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
-    if (!username) {
-      setLoading(false)
-      return
-    }
     const token = localStorage.getItem('access_token')
 
     fetch(`http://localhost:8000/api/profile/${username}/`, {
@@ -45,12 +40,8 @@ export default function FollowersCount({ username: usernameProp }) {
         setError(true)
         setCount(0)
       })
-      .finally(() => {
-        setLoading(false)
-      })
   }, [username])
 
-  if (loading) return <span>Loading…</span>
   if (error)   return <span>0</span>
 
   return (
