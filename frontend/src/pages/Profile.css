@@ -66,6 +66,7 @@
     margin-left: 200px;               
   }
 
+  .following-count-statistic,
   .followers-count-statistic {
     display: flex;    
     flex-direction: column;
@@ -74,11 +75,13 @@
     margin-left: 30px;               
   }
 
+  .following-count-label,
   .followers-count-label,
   .game-review-count-label {
     font-size: 12px;
   }
 
+  .following-count-statistic .following-count,
   .followers-count-statistic .followers-count {
     font-size: 28px;
     font-weight: bold;

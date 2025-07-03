@@ -66,6 +66,10 @@ export default function OtherProfile() {
               <FollowersCount username={profile.username} />
               <span className="followers-count-label">Followers</span>
             </h4>
+            <h4 className="following-count-statistic">
+              <FollowingCount username={profile.username} />
+              <span className="following-count-label">Following</span>
+            </h4>
           </div>
           <div className="profile-bio-and-games">
             <div className="games-column">

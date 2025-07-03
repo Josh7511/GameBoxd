@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import placeholder from '../assets/images/placeholder.png';
 import FollowersCount from '../components/FollowersCount';
+import FollowingCount from '../components/FollowingCount';
 import './Profile.css';
 
 function Profile() {
@@ -81,6 +82,10 @@ function Profile() {
             <h4 className="followers-count-statistic">
               <FollowersCount username={profile.username} />
               <span className="followers-count-label">Followers</span>
+            </h4>
+            <h4 className="following-count-statistic">
+              <FollowingCount username={profile.username} />
+              <span className="following-count-label">Following</span>
             </h4>
           </div>
           <div className="profile-bio-and-games">
