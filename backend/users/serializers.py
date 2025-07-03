@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from users.models import CustomUser  
+from django.contrib.auth import get_user_model
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -25,3 +26,18 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
             'favorite_games': {'required': False},
             'avatar': {'required': False, 'allow_null': True},
         }
+
+User = get_user_model()
+
+class UserSearchSerializer(serializers.ModelSerializer):
+    avatar_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'avatar_url', 'bio']
+
+    def get_avatar_url(self, obj):
+        request = self.context.get('request')
+        if obj.avatar:
+            return request.build_absolute_uri(obj.avatar.url)
+        return None

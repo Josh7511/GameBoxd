@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from users.serializers import UserCreateSerializer, UserProfileSerializer, UserProfileUpdateSerializer
+from users.serializers import UserCreateSerializer, UserProfileSerializer, UserProfileUpdateSerializer, UserSearchSerializer
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.parsers import MultiPartParser, JSONParser
 from rest_framework.decorators import parser_classes
 from users.models import CustomUser
+from django.contrib.auth import get_user_model
 
 @api_view(['PATCH'])
 @permission_classes([IsAuthenticated])
@@ -53,4 +54,17 @@ def user_profile(request):
 def other_user_profile(request, username):
     user = get_object_or_404(CustomUser, username=username)
     serializer = UserProfileSerializer(user)
+    return Response(serializer.data)
+
+User = get_user_model()
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def search_users(request):
+    q = request.GET.get('query', '').strip()
+    if not q:
+        return Response({'error': 'No query provided'}, status=400)
+
+    qs = User.objects.filter(username__icontains=q)[:20]
+    serializer = UserSearchSerializer(qs, many=True, context={'request': request})
     return Response(serializer.data)

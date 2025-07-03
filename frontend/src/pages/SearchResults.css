@@ -1,108 +1,70 @@
-:root {
-  --background: #1e1e1e;
-  --card:       #2a2a2a;
-  --accent:     #8f5ed3;
-  --accent-hover:#7d4fc4;
-  --text:       #e0e0e0;
-  --input-bg:   #333;
-  --input-border:#444;
-  --error:      #ff6b6b;
-}
-
-.search-results-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  padding: 2rem;
+.search-results-container {
+  max-width: 800px;
+  margin: 2rem auto;
   color: var(--text);
 }
-
-.search-results-column {
-  background: var(--background);
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-y: auto;
+.mode-toggle {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
-
+.mode-toggle button {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--text);
+  border-bottom: 2px solid transparent;
+}
+.mode-toggle button.active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
 
 .results-list {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
-
 .result-item {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  background-color: var(--card);
-  margin-bottom: 0.75rem;
-  padding: 1rem;
-  width: 100%;             
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.result-item:hover {
-  background-color: #333;
-}
-
-.game-cover-thumb {
-  width: 80px;
-  height: auto;
+  background: var(--card);
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
   border-radius: 6px;
+}
+.thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
   flex-shrink: 0;
 }
-
-.game-details {
-  display: flex;
-  flex-direction: column;
+.thumb.avatar {
+  border-radius: 50%;
 }
-
-.game-titles {
+.details {
+  flex: 1;
+}
+.title {
+  display: block;
   color: var(--accent);
   font-size: 1.1rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
   text-decoration: none;
+  margin-bottom: 0.25rem;
 }
-
-.game-titles:hover {
+.title:hover {
   text-decoration: underline;
-  color: var(--secondary);
 }
-
-.game-description {
+.desc {
   font-size: 0.9rem;
   color: var(--text);
   display: -webkit-box;
-  line-clamp: 4;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-
-.back-button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background: var(--accent);
-  color: var(--text);
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.back-button:hover {
-  background: var(--secondary);
-}
-
-
-.search-sidebar {
-  background: var(--card);
-  padding: 1.5rem;
-  border-radius: 8px;
-  max-height: 80vh;
-  overflow-y: auto;
 }

@@ -1,66 +1,101 @@
-import React, { useEffect, useState } from 'react';
-import { useSearchParams, useNavigate, Link } from 'react-router-dom';
-import './SearchResults.css'; 
-import placeholder from '../assets/images/placeholder.png';
-import NavBar from '../components/NavBar'; 
+// src/pages/SearchResults.js
+import React, { useState, useEffect } from 'react'
+import { useSearchParams, Link } from 'react-router-dom'
+import NavBar from '../components/NavBar'
+import placeholderGame from '../assets/images/placeholder.png'
+import placeholderAvatar from '../assets/images/placeholder-avatar.png'
+import './SearchResults.css'
 
-function SearchResults() {
-  const [searchParams] = useSearchParams();
-  const query = searchParams.get('query');
-  const [results, setResults] = useState([]);
-  const navigate = useNavigate();
+export default function SearchResults() {
+  const [searchParams] = useSearchParams()
+  const query = searchParams.get('query') || ''
+  const [mode, setMode] = useState('games') 
+  const [results, setResults] = useState([])
 
   useEffect(() => {
-    if (!query) return;
+    if (!query) return
+    const endpoint =
+      mode === 'games'
+        ? `http://localhost:8000/api/search-igdb/?query=${encodeURIComponent(query)}`
+        : `http://localhost:8000/api/search-users/?query=${encodeURIComponent(query)}`
 
-    fetch(`http://localhost:8000/api/search-igdb/?query=${query}`)
-      .then((response) => response.json())
-      .then((data) => setResults(data))
-      .catch((error) => console.error('Fetch Error', error));
-  }, [query]);
-
-  const goBack = () => navigate('/dashboard');
+    fetch(endpoint)
+      .then(res => res.json())
+      .then(data => setResults(data))
+      .catch(err => {
+        console.error('Fetch Error:', err)
+        setResults([])
+      })
+  }, [mode, query])
 
   return (
     <>
       <NavBar />
-      <div className="search-results-grid">
-        {/* ← Left column */}
-        <div className="search-results-column">
-          <h2>Search Results for "{query}"</h2>
-          <ul className="results-list">
-            {results.map((game) => (
-              <li key={game.id} className="result-item">
-                <img
-                  src={
-                    game.cover?.url
-                      ? `https:${game.cover.url.replace('t_thumb', 't_cover_small')}`
-                      : placeholder
-                  }
-                  alt={game.name || 'Game Cover'}
-                  className="game-cover-thumb"
-                />
-                <div className="game-details">
-                  <Link to={`/gamepage/${game.id}`} className="game-titles">
-                    {game.name}
-                  </Link>
-                  <p className="game-description">
-                    {game.summary || 'No description available.'}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <button className="back-button" onClick={goBack}>Go Back</button>
+
+      <div className="search-results-container">
+        <div className="mode-toggle">
+          <button
+            className={mode === 'games' ? 'active' : ''}
+            onClick={() => setMode('games')}
+          >Games</button>
+          <button
+            className={mode === 'users' ? 'active' : ''}
+            onClick={() => setMode('users')}
+          >Users</button>
         </div>
 
-        {}
-        <div className="search-sidebar">
-          <h3>Featured Widget</h3>
-        </div>
+        <h2>
+          {mode === 'games' ? 'Game' : 'User'} Results for “{query}”
+        </h2>
+
+        <ul className="results-list">
+          {results.map(item => (
+            <li key={item.id} className="result-item">
+              {mode === 'games' ? (
+                <>
+                  <img
+                    className="thumb"
+                    src={
+                      item.cover?.url
+                        ? `https:${item.cover.url.replace('t_thumb','t_cover_small')}`
+                        : placeholderGame
+                    }
+                    alt={item.name}
+                  />
+                  <div className="details">
+                    <Link to={`/gamepage/${item.id}`} className="title">
+                      {item.name}
+                    </Link>
+                    <p className="desc">
+                      {item.summary || 'No description.'}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <img
+                    className="thumb avatar"
+                    src={
+                      item.avatar
+                        ? `http://localhost:8000${item.avatar}`
+                        : placeholderAvatar
+                    }
+                    alt={item.username}
+                  />
+                  <div className="details">
+                    <Link to={`/profile/${item.username}`} className="title">
+                      {item.username}
+                    </Link>
+                    <p className="desc">
+                      {item.bio || 'No bio available.'}
+                    </p>
+                  </div>
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
     </>
-  );
+  )
 }
-
-export default SearchResults;
