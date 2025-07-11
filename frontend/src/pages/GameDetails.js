@@ -1,63 +1,74 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import GameLogForm from '../components/GameLogForm';
-import GameCover from '../components/GameCover';
-import GameSummary from '../components/GameSummary';
-import GameReviews from '../components/GameReviews';
-import './GameDetails.css';
-import NavBar from '../components/NavBar';
-import GameTitle from '../components/GameTitle';
-import GameArtwork from '../components/GameArtwork';
-import GameGenres from '../components/GameGenres';
-import GameYear from '../components/GameYear';
-import GameThemes from '../components/GameThemes';
+// src/pages/GameDetails.js
+import React from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import NavBar     from '../components/NavBar'
+import GameArtwork from '../components/GameArtwork'
+import GameCover  from '../components/GameCover'
+import GameTitle  from '../components/GameTitle'
+import GameYear   from '../components/GameYear'
+import GameSummary from '../components/GameSummary'
+import GameGenres from '../components/GameGenres'
+import GameThemes from '../components/GameThemes'
+import GameLogForm  from '../components/GameLogForm'
+import GameReviews  from '../components/GameReviews'
 
-function GameDetails() {
-  const navigate = useNavigate();
-  const { id } = useParams();
-
-  const navDashboard = () => {
-    navigate('/dashboard');
-  };
+export default function GameDetails() {
+  const navigate = useNavigate()
+  const { id }   = useParams()
 
   return (
-<>
-  <NavBar />
-    <div className="game-artwork-container">
+    <div className="bg-[#1e1e1e] text-[#e0e0e0] min-h-screen">
+      <NavBar />
+      <div className="w-full">
         <GameArtwork />
-    </div>
-  <div className="game-details-container">
-    <div className="game-layout">
-    <div className="game-cover-top">
-      <div className="game-cover-column">
-        <GameCover />
       </div>
-    </div>
-      <div className="game-main-content">
-        <div className="top-row">
-          <div className="game-info">
-            <h1 className="game-title"><GameTitle/> </h1>
-            <h3 className="game-year"><GameYear/></h3>
-            <div className="game-summary"><GameSummary /></div>
-            <h3 className="game-genres-title">Genres:</h3>
-            <div className="game-genres"><GameGenres/></div>
-            <h3 className="game-themes-title">Themes:</h3>
-            <div className="game-themes"><GameThemes/></div>
+
+      <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-[250px_1fr] gap-8">
+        <div className="sticky top-24">
+          <GameCover />
+        </div>
+
+        <div className="space-y-8">
+          <div className="grid grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <h1 className="text-3xl font-bold text-[#8f5ed3]">
+                <GameTitle />
+              </h1>
+              <h3 className="text-lg">{<GameYear />}</h3>
+              <div className="prose prose-invert">
+                <GameSummary />
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold text-[#8f5ed3] border-b border-[#e0e0e0] pb-1">
+                  Genres:
+                </h3>
+                <GameGenres />
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold text-[#8f5ed3] border-b border-[#e0e0e0] pb-1">
+                  Themes:
+                </h3>
+                <GameThemes />
+              </div>
+            </div>
+
+            <div className="bg-[#2a2a2a] p-6 rounded-lg shadow-lg">
+              <GameLogForm />
+            </div>
           </div>
-          <div className="game-log-form"><GameLogForm /></div>
+
+          <div>
+            <h4 className="text-2xl font-semibold text-[#8f5ed3] border-b border-[#e0e0e0] pb-1">
+              Game Reviews:
+            </h4>
+            <div className="mt-4">
+              <GameReviews />
+            </div>
+          </div>
         </div>
-        <div className="game-reviews-title">
-          <h4>
-            Game Reviews:
-          </h4>
-        </div>
-        <div className="game-reviews"><GameReviews /></div>
       </div>
     </div>
-  </div>
-</>
-
-  );
-  
+  )
 }
-
-export default GameDetails;
