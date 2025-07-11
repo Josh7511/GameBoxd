@@ -13,6 +13,7 @@ import OtherProfile from './pages/OtherProfile';
 
 function App() {
   return (
+    <div className="bg-background text-text min-h-screen">
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
@@ -33,6 +34,7 @@ function App() {
         />
       </Routes>
     </Router>
+    </div>
   );
 }
 

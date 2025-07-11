@@ -1,60 +1,67 @@
-// src/pages/SearchResults.js
 import React, { useState, useEffect } from 'react'
-import { useSearchParams, Link } from 'react-router-dom'
-import NavBar from '../components/NavBar'
-import placeholderGame from '../assets/images/placeholder.png'
-import placeholderAvatar from '../assets/images/placeholder-avatar.png'
-import './SearchResults.css'
+import { useSearchParams, Link }     from 'react-router-dom'
+import NavBar                         from '../components/NavBar'
+import placeholderGame                from '../assets/images/placeholder.png'
+import placeholderAvatar              from '../assets/images/placeholder-avatar.png'
 
 export default function SearchResults() {
   const [searchParams] = useSearchParams()
-  const query = searchParams.get('query') || ''
-  const [mode, setMode] = useState('games') 
+  const query           = searchParams.get('query') || ''
+  const [mode,   setMode]    = useState('games')
   const [results, setResults] = useState([])
 
   useEffect(() => {
     if (!query) return
+    const base     = 'http://localhost:8000'
     const endpoint =
       mode === 'games'
-        ? `http://localhost:8000/api/search-igdb/?query=${encodeURIComponent(query)}`
-        : `http://localhost:8000/api/search-users/?query=${encodeURIComponent(query)}`
+        ? `${base}/api/search-igdb/?query=${encodeURIComponent(query)}`
+        : `${base}/api/search-users/?query=${encodeURIComponent(query)}`
 
     fetch(endpoint)
-      .then(res => res.json())
+      .then(r => r.json())
       .then(data => setResults(data))
-      .catch(err => {
-        console.error('Fetch Error:', err)
-        setResults([])
-      })
+      .catch(() => setResults([]))
   }, [mode, query])
 
   return (
     <>
       <NavBar />
 
-      <div className="search-results-container">
-        <div className="mode-toggle">
+      <div className="max-w-4xl mx-auto my-8 px-4">
+        <div className="flex space-x-4 mb-4 text-text">
           <button
-            className={mode === 'games' ? 'active' : ''}
             onClick={() => setMode('games')}
+            className={
+              mode === 'games'
+                ? 'border-b-2 border-accent text-accent font-bold pb-1'
+                : 'border-b-2 border-transparent text-text font-bold pb-1'
+            }
           >Games</button>
           <button
-            className={mode === 'users' ? 'active' : ''}
             onClick={() => setMode('users')}
+            className={
+              mode === 'users'
+                ? 'border-b-2 border-accent text-accent font-bold pb-1'
+                : 'border-b-2 border-transparent text-text font-bold pb-1'
+            }
           >Users</button>
         </div>
 
-        <h2>
+        <h2 className="text-2xl font-semibold mb-6 text-text">
           {mode === 'games' ? 'Game' : 'User'} Results for “{query}”
         </h2>
 
-        <ul className="results-list">
+        <ul className="space-y-4">
           {results.map(item => (
-            <li key={item.id} className="result-item">
+            <li
+              key={item.id}
+              className="flex gap-4 bg-card p-4 rounded-lg items-start"
+            >
               {mode === 'games' ? (
                 <>
                   <img
-                    className="thumb"
+                    className="w-16 h-16 object-cover rounded"
                     src={
                       item.cover?.url
                         ? `https:${item.cover.url.replace('t_thumb','t_cover_small')}`
@@ -62,11 +69,14 @@ export default function SearchResults() {
                     }
                     alt={item.name}
                   />
-                  <div className="details">
-                    <Link to={`/gamepage/${item.id}`} className="title">
+                  <div className="flex-1">
+                    <Link
+                      to={`/gamepage/${item.id}`}
+                      className="block text-accent text-lg font-bold hover:underline mb-1"
+                    >
                       {item.name}
                     </Link>
-                    <p className="desc">
+                    <p className="text-sm line-clamp-3 text-text">
                       {item.summary || 'No description.'}
                     </p>
                   </div>
@@ -74,7 +84,7 @@ export default function SearchResults() {
               ) : (
                 <>
                   <img
-                    className="thumb avatar"
+                    className="w-16 h-16 object-cover rounded-full"
                     src={
                       item.avatar
                         ? `http://localhost:8000${item.avatar}`
@@ -82,11 +92,14 @@ export default function SearchResults() {
                     }
                     alt={item.username}
                   />
-                  <div className="details">
-                    <Link to={`/profile/${item.username}`} className="title">
+                  <div className="flex-1">
+                    <Link
+                      to={`/profile/${item.username}`}
+                      className="block text-accent text-lg font-bold hover:underline mb-1"
+                    >
                       {item.username}
                     </Link>
-                    <p className="desc">
+                    <p className="text-sm line-clamp-3 text-text">
                       {item.bio || 'No bio available.'}
                     </p>
                   </div>
