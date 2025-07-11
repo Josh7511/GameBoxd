@@ -1,4 +1,3 @@
-// src/pages/GameDetails.js
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import NavBar     from '../components/NavBar'
