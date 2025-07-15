@@ -1,40 +1,39 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import placeholder from '../assets/images/placeholder.png';
-import './GameCover.css';
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import placeholder from '../assets/images/placeholder.png'
 
-function GameCover() {
-  const { id } = useParams();
-  const [results, setResults] = useState([]);
+export default function GameCover() {
+  const { id } = useParams()
+  const [results, setResults] = useState([])
 
   useEffect(() => {
     fetch(`http://localhost:8000/api/search-by-id/?id=${id}`)
-      .then((response) => response.json())
-      .then((data) => setResults(data))
-      .catch((error) => console.error('Fetch Error', error));
-  }, [id]);
+      .then(r => r.json())
+      .then(data => setResults(data))
+      .catch(() => {})
+  }, [id])
 
   return (
-    <div className="game-cover">
-      {results.length === 0 ? (
-        <img src={placeholder} alt="Placeholder" className="game-cover-image" />
-      ) : (
-        results.map((game) => (
-          <div key={game.id}>
+    <div className="flex justify-center">
+      {results.length === 0
+        ? <img
+            src={placeholder}
+            alt="Placeholder"
+            className="w-[230px] object-cover rounded-lg"
+          />
+        : results.map(game => (
             <img
+              key={game.id}
               src={
                 game.cover?.url
-                  ? `https:${game.cover.url.replace('t_thumb', 't_cover_big')}`
+                  ? `https:${game.cover.url.replace('t_thumb','t_cover_big')}`
                   : placeholder
               }
               alt={game.name || 'Game Cover'}
-              className="game-cover-image"
+              className="w-[230px] object-cover rounded-lg"
             />
-          </div>
-        ))
-      )}
+          ))
+      }
     </div>
-  );
+  )
 }
-
-export default GameCover;

@@ -1,6 +1,0 @@
-.game-cover-image {
-    width: 230px;   /* or any smaller width you want */
-    height: auto;   /* maintain aspect ratio */
-    object-fit: cover;
-    border-radius: 8px;
-  }
