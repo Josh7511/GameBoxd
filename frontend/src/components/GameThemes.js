@@ -1,34 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import './GameThemes.css';
+// src/components/GameThemes.jsx
+import React, { useEffect, useState } from 'react'
+import { useParams }                  from 'react-router-dom'
 
-function GameThemes() {
-  const { id } = useParams();
-  const [game, setGame] = useState(null);
+export default function GameThemes() {
+  const { id } = useParams()
+  const [game, setGame] = useState(null)
 
   useEffect(() => {
     fetch(`http://localhost:8000/api/search-by-id/?id=${id}`)
-      .then((r) => {
-        if (!r.ok) throw new Error(r.statusText);
-        return r.json();
+      .then(r => {
+        if (!r.ok) throw new Error(r.statusText)
+        return r.json()
       })
-      .then((data) => {
-        setGame(data[0] || {});
-      })
-      .catch((err) => console.error('Fetch Error', err));
-  }, [id]);
+      .then(data => setGame(data[0] || {}))
+      .catch(err => console.error('Fetch Error', err))
+  }, [id])
 
-  if (!game || !game.themes) return null;
+  if (!game?.themes) return null
 
   return (
-    <div className="game-themes">
-      {game.themes.map((g) => (
-        <span key={g.id} className="theme-badge">
-          {g.name}
+    <div className="flex flex-wrap gap-2">
+      {game.themes.map(theme => (
+        <span
+          key={theme.id}
+          className="
+            bg-card text-text 
+            px-3 py-1 
+            rounded-full 
+            text-sm 
+            capitalize 
+            transition 
+            hover:bg-accent-hover 
+            hover:text-background
+          "
+        >
+          {theme.name}
         </span>
       ))}
     </div>
-  );
+  )
 }
-
-export default GameThemes;
