@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 
+
 // tailwind.config.js
 module.exports = {
   content: [
@@ -20,6 +21,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
+        serif: ['"Abril Fatface"', 'serif'],
       },
     },
   },
